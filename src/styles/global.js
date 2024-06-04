@@ -29,6 +29,8 @@ export default createGlobalStyle`
     transition: filter 0.2s;
   }
 
+  button {border: none; background: none}
+
   button:hover, a:hover {
     opacity: 0.9;
   }

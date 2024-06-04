@@ -1,7 +1,9 @@
 import styled from "styled-components"
 
 export const Container = styled.div`
-  border: 1px solid red;
-  max-width: 32rem;
+  max-width: 428px;
   margin: 0 auto;
+
+  display: grid;
+  grid-template-rows: auto;
 `
