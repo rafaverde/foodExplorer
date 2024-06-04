@@ -6,8 +6,8 @@ export const Container = styled.button`
   color: ${({ theme }) => theme.COLORS.TEXTS_100};
 
   > svg {
-    width: 3.8rem;
-    height: 3.8rem;
+    width: 3.5rem;
+    height: 3.5rem;
   }
 
   > .counter {

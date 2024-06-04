@@ -8,7 +8,7 @@ export default createGlobalStyle`
   }
 
   :root {
-    font-size: clamp(40%, 1% + 2vw, 62.5%);
+    font-size: 62.5%;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -33,6 +33,10 @@ export default createGlobalStyle`
 
   button:hover, a:hover {
     opacity: 0.9;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: ${({ theme }) => theme.FONTS.PRIMARY_FONT};
   }
 
   
