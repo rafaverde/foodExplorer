@@ -23,7 +23,7 @@ export const Container = styled.div`
     }
 
     h2 {
-      font-size: 1.8rem;
+      font-size: 2rem;
       line-height: 1;
     }
 

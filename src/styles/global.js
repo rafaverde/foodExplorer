@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components"
+import { DEVICE_BREAKPOINTS } from "../styles/deviceBreakpoints"
 
 export default createGlobalStyle`
   * {
@@ -8,9 +9,21 @@ export default createGlobalStyle`
   }
 
   :root {
-    font-size: 62.5%;
+    font-size: 40%;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+
+    @media (min-width: ${DEVICE_BREAKPOINTS.MD}){
+      font-size: 62.5%;
+    }
+
+    @media (min-width: ${DEVICE_BREAKPOINTS.LG}){
+      font-size: 120%;
+    }
+
+    @media (min-width: ${DEVICE_BREAKPOINTS.XL}){
+      font-size: 140%;
+    }
   }
 
   body {
@@ -37,6 +50,10 @@ export default createGlobalStyle`
 
   h1, h2, h3, h4 {
     font-family: ${({ theme }) => theme.FONTS.PRIMARY_FONT};
+  }
+
+  input {
+    outline: none;
   }
 
   

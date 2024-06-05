@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints"
 
 export const Container = styled.button`
   position: relative;
@@ -6,8 +7,13 @@ export const Container = styled.button`
   color: ${({ theme }) => theme.COLORS.TEXTS_100};
 
   > svg {
-    width: 3.5rem;
-    height: 3.5rem;
+    width: 5rem;
+    height: 5rem;
+
+    @media (min-width: ${DEVICE_BREAKPOINTS.MD}) {
+      width: 3.2rem;
+      height: 3.2rem;
+    }
   }
 
   > .counter {
@@ -25,5 +31,9 @@ export const Container = styled.button`
     right: -5px;
 
     border-radius: 99px;
+  }
+
+  @media (min-width: ${DEVICE_BREAKPOINTS.LG}) {
+    display: none;
   }
 `

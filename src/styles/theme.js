@@ -3,13 +3,14 @@ export const darkTheme = {
     BACKGROUND_100: "#000405",
     BACKGROUND_200: "#00070A",
     BACKGROUND_400: "#000204",
-    BACKGROUND_500: "#000C12",
+    BACKGROUND_500: "#0D1D25",
     BACKGROUND_600: "#00111A",
     BACKGROUND_700: "#001119",
 
     TITLES: "#E1E1E6",
     TEXTS_100: "#FFFFFF",
     TEXTS_300: "#E1E1E6",
+    TEXTS_500: "#7C7C8A",
 
     ACCENT: "#82F3FF",
 
@@ -42,6 +43,7 @@ export const lightTheme = {
     TITLES: "#000204",
     TEXTS_100: "#000405",
     TEXTS_300: "#000204",
+    TEXTS_500: "#21486F",
 
     ACCENT: "#82F3FF",
 
