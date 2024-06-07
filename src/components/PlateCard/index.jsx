@@ -16,6 +16,7 @@ export function PlateCard({ counter, onClickMinus, onClickPlus }) {
 
       <Infos>
         <h3>Salada Ravanello {">"}</h3>
+        <p>Massa fresca com camarões e pesto.</p>
         <span>R$ 47,90</span>
       </Infos>
 

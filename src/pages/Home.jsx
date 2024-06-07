@@ -1,13 +1,16 @@
 import { Container, Content } from "./styles"
-import { Plus } from "@phosphor-icons/react"
+
+import { Splide, SplideSlide } from "@splidejs/react-splide"
+import "@splidejs/react-splide/css/skyblue"
+import { splideOptions } from "../utils/splideOptions"
 
 import { Header } from "../components/Header"
 import { Hero } from "../components/Hero"
 import { CategorySection } from "../components/CategorySection"
 import { PlateCard } from "../components/PlateCard"
+import { Footer } from "../components/Footer"
 
 import { useState } from "react"
-import { Footer } from "../components/Footer"
 
 export function Home() {
   const [productCounter, setProductCounter] = useState(0)
@@ -30,11 +33,36 @@ export function Home() {
         <Hero />
         <div className="category">
           <CategorySection title="Refeições" />
-          <PlateCard
-            counter={productCounter}
-            onClickMinus={() => handleCounterClick("minus")}
-            onClickPlus={() => handleCounterClick("plus")}
-          />
+          <Splide aria-label="Refeições" options={splideOptions}>
+            <SplideSlide>
+              <PlateCard
+                counter={productCounter}
+                onClickMinus={() => handleCounterClick("minus")}
+                onClickPlus={() => handleCounterClick("plus")}
+              />
+            </SplideSlide>
+            <SplideSlide>
+              <PlateCard
+                counter={productCounter}
+                onClickMinus={() => handleCounterClick("minus")}
+                onClickPlus={() => handleCounterClick("plus")}
+              />
+            </SplideSlide>
+            <SplideSlide>
+              <PlateCard
+                counter={productCounter}
+                onClickMinus={() => handleCounterClick("minus")}
+                onClickPlus={() => handleCounterClick("plus")}
+              />
+            </SplideSlide>
+            <SplideSlide>
+              <PlateCard
+                counter={productCounter}
+                onClickMinus={() => handleCounterClick("minus")}
+                onClickPlus={() => handleCounterClick("plus")}
+              />
+            </SplideSlide>
+          </Splide>
         </div>
       </Content>
 

@@ -1,7 +1,8 @@
 import styled from "styled-components"
+import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints"
 
 export const Container = styled.div`
-  width: 17rem;
+  width: 100%;
   position: relative;
 
   display: flex;
@@ -43,6 +44,16 @@ export const Infos = styled.div`
   > h3 {
     font-size: 1rem;
     font-weight: 500;
+  }
+
+  > p {
+    display: none;
+    text-align: center;
+    font-size: 0.8rem;
+
+    @media (min-width: ${DEVICE_BREAKPOINTS.MD}) {
+      display: block;
+    }
   }
 
   > span {
