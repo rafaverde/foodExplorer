@@ -7,7 +7,17 @@ import { Button } from "../../components/Button"
 import { Heart, Minus, Plus, PlusCircle } from "@phosphor-icons/react"
 import plateTemp from "../../assets/plates/plate-gambe.png"
 
-export function PlateCard({ counter, onClickMinus, onClickPlus }) {
+import { useEffect, useState } from "react"
+
+export function PlateCard() {
+  const [productCounter, setProductCounter] = useState(0)
+
+  useEffect(() => {
+    if (productCounter < 0) {
+      setProductCounter(0)
+    }
+  }, [productCounter])
+
   return (
     <Container>
       <IconButton icon={Heart} className="heart-favourite" />
@@ -21,9 +31,19 @@ export function PlateCard({ counter, onClickMinus, onClickPlus }) {
       </Infos>
 
       <Counter>
-        <IconButton icon={Minus} onClick={onClickMinus} />
-        <Input value={counter} readOnly />
-        <IconButton icon={Plus} onClick={onClickPlus} />
+        <IconButton
+          icon={Minus}
+          onClick={() => {
+            setProductCounter(productCounter - 1)
+          }}
+        />
+        <Input value={productCounter} readOnly />
+        <IconButton
+          icon={Plus}
+          onClick={() => {
+            setProductCounter(productCounter + 1)
+          }}
+        />
       </Counter>
 
       <Button title="Adicionar" icon={PlusCircle} className="add-button" />

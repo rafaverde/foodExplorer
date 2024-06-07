@@ -10,21 +10,7 @@ import { CategorySection } from "../components/CategorySection"
 import { PlateCard } from "../components/PlateCard"
 import { Footer } from "../components/Footer"
 
-import { useState } from "react"
-
 export function Home() {
-  const [productCounter, setProductCounter] = useState(0)
-
-  function handleCounterClick(operation) {
-    if (operation === "minus") {
-      if (productCounter > 0) {
-        setProductCounter(productCounter - 1)
-      }
-    } else {
-      setProductCounter(productCounter + 1)
-    }
-  }
-
   return (
     <Container>
       <Header />
@@ -35,32 +21,16 @@ export function Home() {
           <CategorySection title="Refeições" />
           <Splide aria-label="Refeições" options={splideOptions}>
             <SplideSlide>
-              <PlateCard
-                counter={productCounter}
-                onClickMinus={() => handleCounterClick("minus")}
-                onClickPlus={() => handleCounterClick("plus")}
-              />
+              <PlateCard />
             </SplideSlide>
             <SplideSlide>
-              <PlateCard
-                counter={productCounter}
-                onClickMinus={() => handleCounterClick("minus")}
-                onClickPlus={() => handleCounterClick("plus")}
-              />
+              <PlateCard />
             </SplideSlide>
             <SplideSlide>
-              <PlateCard
-                counter={productCounter}
-                onClickMinus={() => handleCounterClick("minus")}
-                onClickPlus={() => handleCounterClick("plus")}
-              />
+              <PlateCard />
             </SplideSlide>
             <SplideSlide>
-              <PlateCard
-                counter={productCounter}
-                onClickMinus={() => handleCounterClick("minus")}
-                onClickPlus={() => handleCounterClick("plus")}
-              />
+              <PlateCard />
             </SplideSlide>
           </Splide>
         </div>
