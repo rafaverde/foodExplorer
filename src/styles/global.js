@@ -9,12 +9,12 @@ export default createGlobalStyle`
   }
 
   :root {
-    font-size: 40%;
+    font-size: 14px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 
     @media (min-width: ${DEVICE_BREAKPOINTS.MD}){
-      font-size: 62.5%;
+      font-size: 16px;
     }
 
     @media (min-width: ${DEVICE_BREAKPOINTS.LG}){

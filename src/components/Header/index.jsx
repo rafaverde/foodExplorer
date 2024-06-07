@@ -20,7 +20,7 @@ export function Header() {
           placeholder="Busque por pratos ou igredientes"
         />
       </Search>
-      <Button icon={Receipt} title="Pedidos (0)" />
+      <Button icon={Receipt} title="Pedidos (0)" className="order-button" />
       <Cart />
       <LogOut>
         <SignOut></SignOut>

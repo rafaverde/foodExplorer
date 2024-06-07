@@ -34,8 +34,4 @@ export const Container = styled.button`
   > svg {
     font-size: 1.2rem;
   }
-
-  @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
-    display: none;
-  }
 `

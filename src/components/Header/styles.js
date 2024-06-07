@@ -6,6 +6,8 @@ export const Container = styled.div`
   height: 114px;
   padding: 30px 3rem 0;
 
+  grid-area: header;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -22,12 +24,17 @@ export const Container = styled.div`
   }
 
   > button {
-    max-width: 12rem;
+    max-width: 230px;
   }
 
   @media (min-width: ${DEVICE_BREAKPOINTS.MD}) {
-    padding: 1.5rem 3rem;
-    height: auto;
+    padding: 30px 3rem;
+  }
+
+  .order-button {
+    @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+      display: none;
+    }
   }
 `
 
@@ -37,7 +44,7 @@ export const Menu = styled.button`
 
   > svg {
     color: ${({ theme }) => theme.COLORS.TEXTS_100};
-    font-size: 3.8rem;
+    font-size: 2.8rem;
   }
 
   @media (min-width: ${DEVICE_BREAKPOINTS.LG}) {

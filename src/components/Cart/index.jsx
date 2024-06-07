@@ -5,7 +5,7 @@ export function Cart({ icon: Icon, count, ...rest }) {
   return (
     <Container>
       <Receipt />
-      <div className="counter">
+      <div className="receipt-counter">
         <span>0</span>
       </div>
     </Container>

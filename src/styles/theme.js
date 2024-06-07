@@ -54,6 +54,10 @@ export const lightTheme = {
     MINT_GREEN: "#04D361",
   },
 
+  GRADIENTS: {
+    GRADIENT_200: "linear-gradient(180deg, #091E26 0%, #00131C 100%)",
+  },
+
   FONTS: {
     PRIMARY_FONT: "'Poppins', sans-serif",
     SECONDARY_FONT: "'Roboto', sans-serif",

@@ -7,16 +7,11 @@ export const Container = styled.button`
   color: ${({ theme }) => theme.COLORS.TEXTS_100};
 
   > svg {
-    width: 5rem;
-    height: 5rem;
-
-    @media (min-width: ${DEVICE_BREAKPOINTS.MD}) {
-      width: 3.2rem;
-      height: 3.2rem;
-    }
+    width: 3rem;
+    height: 3rem;
   }
 
-  > .counter {
+  > .receipt-counter {
     background-color: ${({ theme }) => theme.COLORS.DARK_RED};
 
     width: 20px;
