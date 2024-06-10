@@ -4,6 +4,7 @@ export const Container = styled.div`
   width: 100%;
   height: 77px;
   padding: 20px 3rem;
+  margin-top: 30px;
 
   grid-area: footer;
 

@@ -7,10 +7,10 @@ import { Cart } from "../Cart"
 import { Input } from "../Input"
 import { Button } from "../Button"
 
-export function Header() {
+export function Header({ onOpenMenu }) {
   return (
     <Container>
-      <Menu>
+      <Menu onClick={onOpenMenu}>
         <List />
       </Menu>
       <img src={logo} />
