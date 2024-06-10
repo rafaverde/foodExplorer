@@ -11,10 +11,16 @@ import { useEffect, useState } from "react"
 
 export function PlateCard() {
   const [productCounter, setProductCounter] = useState(0)
+  const [disableButton, setDisableButton] = useState(true)
 
   useEffect(() => {
     if (productCounter < 0) {
       setProductCounter(0)
+      setDisableButton(true)
+    }
+
+    if (productCounter > 0) {
+      setDisableButton(false)
     }
   }, [productCounter])
 
@@ -36,6 +42,7 @@ export function PlateCard() {
           onClick={() => {
             setProductCounter(productCounter - 1)
           }}
+          disabled={disableButton}
         />
         <Input value={productCounter} readOnly />
         <IconButton

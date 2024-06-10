@@ -9,6 +9,10 @@ export const Container = styled.button`
 
   color: ${({ theme }) => theme.COLORS.TEXTS_100};
 
+  &:disabled {
+    opacity: 0.5;
+  }
+
   > svg {
     color: ${({ theme }) => theme.COLORS.TEXTS_100};
     font-size: 2rem;
