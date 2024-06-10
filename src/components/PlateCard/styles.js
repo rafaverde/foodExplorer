@@ -30,7 +30,11 @@ export const Container = styled.div`
   }
 
   .add-button {
-    font-size: 1rem;
+    font-size: 1.4rem;
+
+    @media (min-width: ${DEVICE_BREAKPOINTS.MD}) {
+      font-size: 0.9rem;
+    }
   }
 `
 

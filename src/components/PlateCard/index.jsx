@@ -12,9 +12,18 @@ import { useEffect, useState } from "react"
 export function PlateCard() {
   const [productCounter, setProductCounter] = useState(0)
   const [disableButton, setDisableButton] = useState(true)
+  const [isFavourite, setIsFavourite] = useState(false)
+
+  function handleFavouriteClick() {
+    if (isFavourite) {
+      setIsFavourite(false)
+    } else {
+      setIsFavourite(true)
+    }
+  }
 
   useEffect(() => {
-    if (productCounter < 0) {
+    if (productCounter <= 0) {
       setProductCounter(0)
       setDisableButton(true)
     }
@@ -26,7 +35,12 @@ export function PlateCard() {
 
   return (
     <Container>
-      <IconButton icon={Heart} className="heart-favourite" />
+      <IconButton
+        icon={Heart}
+        className="heart-favourite"
+        isFilled={isFavourite}
+        onClick={handleFavouriteClick}
+      />
 
       <img src={plateTemp} alt="" />
 

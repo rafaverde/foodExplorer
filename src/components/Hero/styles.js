@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints"
 
 export const Container = styled.div`
   width: 100%;
@@ -10,8 +11,6 @@ export const Container = styled.div`
     gap: 0;
 
     position: relative;
-
-    /* padding: 2rem; */
 
     border-radius: 1rem;
 
@@ -31,6 +30,16 @@ export const Container = styled.div`
     h4 {
       font-size: 0.9rem;
       font-weight: 300;
+    }
+
+    @media (min-width: ${DEVICE_BREAKPOINTS.MD}) {
+      h2 {
+        font-size: 2.2rem;
+      }
+
+      h4 {
+        font-size: 1.4rem;
+      }
     }
   }
 

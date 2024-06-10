@@ -1,9 +1,9 @@
 import { Container } from "./styles"
 
-export function IconButton({ icon: Icon, title, ...rest }) {
+export function IconButton({ icon: Icon, title, isFilled = false, ...rest }) {
   return (
     <Container type="button" {...rest}>
-      {Icon && <Icon />}
+      {Icon && <Icon weight={isFilled ? "fill" : "regular"} />}
       {title}
     </Container>
   )

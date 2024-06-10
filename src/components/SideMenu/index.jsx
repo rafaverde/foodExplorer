@@ -1,4 +1,11 @@
-import { MagnifyingGlass, SignOut, User, X } from "@phosphor-icons/react"
+import {
+  MagnifyingGlass,
+  Receipt,
+  SignOut,
+  User,
+  X,
+  Heart,
+} from "@phosphor-icons/react"
 
 import { Header, Search, Nav } from "./styles"
 import { Input } from "../Input"
@@ -22,6 +29,8 @@ export function SideMenu({ menuIsOpen, onCloseMenu }) {
 
         <Nav>
           <IconButton title="Minha Conta" icon={User} />
+          <IconButton title="Meus Pedidos" icon={Receipt} />
+          <IconButton title="Meus Favoritos" icon={Heart} />
           <IconButton title="Sair" icon={SignOut} />
         </Nav>
       </div>
