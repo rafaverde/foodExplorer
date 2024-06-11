@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints"
 
 export const Container = styled.button`
   display: flex;
@@ -13,7 +14,7 @@ export const Container = styled.button`
     $isdark === true ? theme.COLORS.TEXTS_300 : theme.COLORS.TEXTS_100};
 
   font-family: ${({ theme }) => theme.FONTS.PRIMARY_FONT};
-  font-size: 0.7rem;
+  font-size: 1.4rem;
   font-weight: 500;
 
   height: 56px;
@@ -32,5 +33,9 @@ export const Container = styled.button`
 
   > svg {
     font-size: 1.2rem;
+  }
+
+  @media (min-width: ${DEVICE_BREAKPOINTS.MD}) {
+    font-size: 0.9rem;
   }
 `

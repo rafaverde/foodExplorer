@@ -1,17 +1,15 @@
-import { Container, Infos, Counter } from "./styles"
+import { Container, Infos } from "./styles"
 
-import { Input } from "../../components/Input"
 import { IconButton } from "../../components/IconButton"
 import { Button } from "../../components/Button"
+import { Counter } from "../../components/Counter"
 
-import { Heart, Minus, Plus, PlusCircle } from "@phosphor-icons/react"
+import { Heart, PlusCircle } from "@phosphor-icons/react"
 import plateTemp from "../../assets/plates/plate-gambe.png"
 
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
 export function PlateCard() {
-  const [productCounter, setProductCounter] = useState(0)
-  const [disableButton, setDisableButton] = useState(true)
   const [isFavourite, setIsFavourite] = useState(false)
 
   function handleFavouriteClick() {
@@ -21,17 +19,6 @@ export function PlateCard() {
       setIsFavourite(true)
     }
   }
-
-  useEffect(() => {
-    if (productCounter <= 0) {
-      setProductCounter(0)
-      setDisableButton(true)
-    }
-
-    if (productCounter > 0) {
-      setDisableButton(false)
-    }
-  }, [productCounter])
 
   return (
     <Container>
@@ -50,24 +37,9 @@ export function PlateCard() {
         <span>R$ 47,90</span>
       </Infos>
 
-      <Counter>
-        <IconButton
-          icon={Minus}
-          onClick={() => {
-            setProductCounter(productCounter - 1)
-          }}
-          disabled={disableButton}
-        />
-        <Input value={productCounter} readOnly />
-        <IconButton
-          icon={Plus}
-          onClick={() => {
-            setProductCounter(productCounter + 1)
-          }}
-        />
-      </Counter>
+      <Counter />
 
-      <Button title="Adicionar" icon={PlusCircle} className="add-button" />
+      <Button title="Adicionar" icon={PlusCircle} />
     </Container>
   )
 }

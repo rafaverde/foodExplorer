@@ -6,7 +6,7 @@ import { Input } from "../../components/Input"
 import { Button } from "../../components/Button"
 import { ButtonText } from "../../components/ButtonText"
 
-export function SignOut() {
+export function SignUp() {
   return (
     <Container>
       <img src={logo} alt="Food Explorer" />

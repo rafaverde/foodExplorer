@@ -28,14 +28,6 @@ export const Container = styled.div`
   > img {
     max-width: 8.8rem;
   }
-
-  .add-button {
-    font-size: 1.4rem;
-
-    @media (min-width: ${DEVICE_BREAKPOINTS.MD}) {
-      font-size: 0.9rem;
-    }
-  }
 `
 
 export const Infos = styled.div`
@@ -65,19 +57,5 @@ export const Infos = styled.div`
     font-weight: 700;
 
     color: ${({ theme }) => theme.COLORS.ACCENT};
-  }
-`
-export const Counter = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  input {
-    text-align: center;
-    font-size: 2rem;
-
-    margin-top: 4px;
-    padding: 4px 0 0;
   }
 `
