@@ -6,20 +6,24 @@ import { Minus, Plus } from "@phosphor-icons/react"
 import { Input } from "../../components/Input"
 import { IconButton } from "../../components/IconButton"
 
-export function Counter() {
-  const [productCounter, setProductCounter] = useState(0)
+export function Counter({ onCounterChange }) {
+  const [productCounter, setProductCounter] = useState(1)
   const [disableButton, setDisableButton] = useState(true)
 
   useEffect(() => {
-    if (productCounter <= 0) {
-      setProductCounter(0)
+    if (productCounter <= 1) {
+      setProductCounter(1)
       setDisableButton(true)
     }
 
-    if (productCounter > 0) {
+    if (productCounter > 1) {
       setDisableButton(false)
     }
   }, [productCounter])
+
+  useEffect(() => {
+    onCounterChange(productCounter)
+  }, [productCounter, onCounterChange])
 
   return (
     <Container>

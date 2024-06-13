@@ -11,13 +11,15 @@ import { useState } from "react"
 
 export function PlateCard() {
   const [isFavourite, setIsFavourite] = useState(false)
+  const price = 47.9
+  const [counterValue, setCounterValue] = useState(0)
 
   function handleFavouriteClick() {
-    if (isFavourite) {
-      setIsFavourite(false)
-    } else {
-      setIsFavourite(true)
-    }
+    setIsFavourite((prevState) => !prevState)
+  }
+
+  const handleCounterChange = (newValue) => {
+    setCounterValue(newValue)
   }
 
   return (
@@ -34,10 +36,10 @@ export function PlateCard() {
       <Infos>
         <h3>Salada Ravanello {">"}</h3>
         <p>Massa fresca com camarões e pesto.</p>
-        <span>R$ 47,90</span>
+        <span>R$ {(price * counterValue).toFixed(2)}</span>
       </Infos>
 
-      <Counter />
+      <Counter onCounterChange={handleCounterChange} />
 
       <Button title="Adicionar" icon={PlusCircle} />
     </Container>
