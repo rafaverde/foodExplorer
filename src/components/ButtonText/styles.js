@@ -7,7 +7,7 @@ export const Container = styled.button`
   gap: 8px;
 
   color: ${({ theme, $isactive }) =>
-    $isactive === true ? theme.COLORS.TEXTS_300 : theme.COLORS.GRAY_100};
+    $isactive === true ? theme.COLORS.TEXTS_300 : theme.COLORS.TEXTS_500};
 
   border: none;
 

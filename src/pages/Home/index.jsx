@@ -9,20 +9,11 @@ import { Hero } from "../../components/Hero"
 import { CategorySection } from "../../components/CategorySection"
 import { PlateCard } from "../../components/PlateCard"
 import { Footer } from "../../components/Footer"
-import { SideMenu } from "../../components/SideMenu"
-
-import { useState } from "react"
 
 export function Home() {
-  const [menuIsOpen, setMenuIsOpen] = useState(false)
-
   return (
     <Container>
-      <Header onOpenMenu={() => setMenuIsOpen(true)} />
-      <SideMenu
-        menuIsOpen={menuIsOpen}
-        onCloseMenu={() => setMenuIsOpen(false)}
-      />
+      <Header />
 
       <Content>
         <Hero />

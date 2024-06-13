@@ -6,11 +6,17 @@ import logo from "../../assets/food-explorer-logo.svg"
 import { Cart } from "../Cart"
 import { Input } from "../Input"
 import { Button } from "../Button"
+import { SideMenu } from "../SideMenu"
+
+import { useUI } from "../../hooks/ui"
 
 export function Header({ onOpenMenu }) {
+  const { menuIsOpen, toggleSideMenu } = useUI()
+
   return (
     <Container>
-      <Menu onClick={onOpenMenu}>
+      <SideMenu menuIsOpen={menuIsOpen} onCloseMenu={() => toggleSideMenu()} />
+      <Menu onClick={() => toggleSideMenu()}>
         <List />
       </Menu>
       <img src={logo} />

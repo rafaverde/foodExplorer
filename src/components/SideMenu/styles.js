@@ -6,6 +6,8 @@ export const Container = styled.aside`
   height: 100vh;
 
   position: absolute;
+  top: 0;
+  left: 0;
   z-index: 99;
 
   display: flex;

@@ -12,7 +12,11 @@ import { Input } from "../Input"
 import { Container } from "./styles"
 import { IconButton } from "../IconButton"
 
-export function SideMenu({ menuIsOpen, onCloseMenu }) {
+import { useUI } from "../../hooks/ui"
+
+export function SideMenu({ onCloseMenu }) {
+  const { menuIsOpen, toggleSideMenu } = useUI()
+
   return (
     <Container data-menu-is-open={menuIsOpen}>
       <Header>
