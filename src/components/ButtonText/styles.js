@@ -12,10 +12,14 @@ export const Container = styled.button`
   border: none;
 
   font-family: ${({ theme }) => theme.FONTS.PRIMARY_FONT};
-  font-size: 16px;
+  font-size: 1.2rem;
   font-weight: 500;
 
   &:hover {
     opacity: 0.85;
+  }
+
+  > svg {
+    font-size: 2rem;
   }
 `

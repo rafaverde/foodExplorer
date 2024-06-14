@@ -23,7 +23,7 @@ export function Counter({ onCounterChange }) {
 
   useEffect(() => {
     onCounterChange(productCounter)
-  }, [productCounter, onCounterChange])
+  }, [productCounter])
 
   return (
     <Container>

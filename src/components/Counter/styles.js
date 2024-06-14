@@ -6,6 +6,10 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
 
+  div {
+    background: none;
+  }
+
   input {
     text-align: center;
     font-size: 2rem;
