@@ -1,5 +1,8 @@
 import { createContext, useContext, useState } from "react"
 
+import { ThemeProvider } from "styled-components"
+import { darkTheme, lightTheme } from "../styles/theme"
+
 export const UIContext = createContext({})
 
 function UIProvider({ children }) {
@@ -27,7 +30,9 @@ function UIProvider({ children }) {
         toggleThemeMode,
       }}
     >
-      {children}
+      <ThemeProvider theme={!isDarkTheme ? darkTheme : lightTheme}>
+        {children}
+      </ThemeProvider>
     </UIContext.Provider>
   )
 }

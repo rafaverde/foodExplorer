@@ -33,11 +33,6 @@ export function SideMenu({ onCloseMenu }) {
         </Search>
 
         <Nav>
-          <SwitchButton
-            onSwitchButton={() => {
-              toggleThemeMode()
-            }}
-          />
           <IconButton title="Minha Conta" icon={User} />
           <IconButton title="Meus Pedidos" icon={Receipt} />
           <IconButton title="Meus Favoritos" icon={Heart} />

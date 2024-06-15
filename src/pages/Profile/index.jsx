@@ -41,6 +41,12 @@ export function Profile() {
               </label>
               <IconButton icon={X} className="close-button" />
             </Avatar>
+
+            <SwitchButton
+              onSwitchButton={() => {
+                toggleThemeMode()
+              }}
+            />
             <Input placeholder="Nome" type="text" icon={User} />
             <Input placeholder="E-mail" type="text" icon={Envelope} />
             <Input placeholder="Senha Atual" type="password" icon={User} />
@@ -49,11 +55,6 @@ export function Profile() {
           </Form>
 
           <Nav>
-            <SwitchButton
-              onSwitchButton={() => {
-                toggleThemeMode()
-              }}
-            />
             <IconButton title="Meus Pedidos" icon={Receipt} />
             <IconButton title="Meus Favoritos" icon={Heart} />
             <IconButton title="Sair" icon={SignOut} />

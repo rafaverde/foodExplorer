@@ -63,8 +63,8 @@ export const Form = styled.form`
 
   border-radius: 0.7rem;
 
-  > div:nth-child(3),
-  div:nth-child(5) {
+  > div:nth-child(4),
+  div:nth-child(6) {
     margin-bottom: 15px;
   }
 

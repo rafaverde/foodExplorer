@@ -67,4 +67,9 @@ export const lightTheme = {
     PRIMARY_FONT: "'Poppins', sans-serif",
     SECONDARY_FONT: "'Roboto', sans-serif",
   },
+
+  ANIMATIONS: {
+    SLIDE_LEFT: "slide-left 0.4s",
+    SLIDE_RIGHT: "slide-right 0.4s forwards",
+  },
 }

@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints"
 
 export const Container = styled.div`
   width: 64px;
@@ -32,7 +33,11 @@ export const Container = styled.div`
         : theme.ANIMATIONS.SLIDE_LEFT};
 
     > svg {
-      font-size: 1.2rem;
+      font-size: 1.6rem;
+
+      @media (min-width: ${DEVICE_BREAKPOINTS.MD}) {
+        font-size: 1.2rem;
+      }
     }
   }
 
