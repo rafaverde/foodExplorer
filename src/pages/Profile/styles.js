@@ -20,7 +20,37 @@ export const Content = styled.div`
 
   display: flex;
   flex-direction: column;
-  gap: 46px;
+  gap: 16px;
+`
+
+export const Menu = styled.aside`
+  @media (min-width: ${DEVICE_BREAKPOINTS.MD}) {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+`
+
+export const Nav = styled.nav`
+  display: none;
+  @media (min-width: ${DEVICE_BREAKPOINTS.MD}) {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    svg {
+      font-size: 1.4rem;
+    }
+
+    button {
+      font-size: 1rem;
+      padding: 20px 25px;
+      border: 1px solid ${({ theme }) => theme.COLORS.BACKGROUND_500};
+      background-color: ${({ theme }) => theme.COLORS.BACKGROUND_500};
+      border-radius: 0.7rem;
+    }
+  }
 `
 
 export const Form = styled.form`
@@ -29,19 +59,24 @@ export const Form = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
+  gap: 8px;
 
   border-radius: 0.7rem;
 
-  > div:nth-child(3) {
-    margin-bottom: 16px;
+  > div:nth-child(3),
+  div:nth-child(5) {
+    margin-bottom: 15px;
+  }
+
+  @media (min-width: ${DEVICE_BREAKPOINTS.MD}) {
+    max-width: 600px;
   }
 `
 
 export const Avatar = styled.div`
   width: 180px;
   height: 180px;
-  margin: 0 auto 20px;
+  margin: 0 auto 40px;
 
   position: relative;
 

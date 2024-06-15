@@ -1,7 +1,7 @@
 export const darkTheme = {
   COLORS: {
     BACKGROUND_100: "#000405",
-    BACKGROUND_200: "#00070A",
+    BACKGROUND_200: "#153D4E",
     BACKGROUND_400: "#000204",
     BACKGROUND_500: "#0D1D25",
     BACKGROUND_600: "#0D1D25",
@@ -28,6 +28,11 @@ export const darkTheme = {
   FONTS: {
     PRIMARY_FONT: "'Poppins', sans-serif",
     SECONDARY_FONT: "'Roboto', sans-serif",
+  },
+
+  ANIMATIONS: {
+    SLIDE_LEFT: "slide-left 0.4s",
+    SLIDE_RIGHT: "slide-right 0.4s forwards",
   },
 }
 

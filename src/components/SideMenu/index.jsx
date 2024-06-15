@@ -15,7 +15,7 @@ import { IconButton } from "../IconButton"
 import { useUI } from "../../hooks/ui"
 
 export function SideMenu({ onCloseMenu }) {
-  const { menuIsOpen, toggleSideMenu } = useUI()
+  const { menuIsOpen } = useUI()
 
   return (
     <Container data-menu-is-open={menuIsOpen}>
