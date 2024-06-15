@@ -27,7 +27,7 @@ export default createGlobalStyle`
   }
 
   body {
-    background-color: ${({ theme }) => theme.COLORS.BACKGROUND_100};
+    background-color: ${({ theme }) => theme.COLORS.BACKGROUND_700};
     color: ${({ theme }) => theme.COLORS.TEXTS_100};
 
     font-family: ${({ theme }) => theme.FONTS.SECONDARY_FONT};

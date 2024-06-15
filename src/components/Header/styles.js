@@ -13,7 +13,7 @@ export const Container = styled.div`
   justify-content: space-between;
   gap: 3rem;
 
-  background-color: ${({ theme }) => theme.COLORS.BACKGROUND_700};
+  background-color: ${({ theme }) => theme.COLORS.BACKGROUND_600};
 
   > img {
     width: 160px;
@@ -70,7 +70,7 @@ export const Search = styled.div`
   height: 56px;
   width: 100%;
 
-  background-color: ${({ theme }) => theme.COLORS.BACKGROUND_500};
+  background-color: ${({ theme }) => theme.COLORS.BACKGROUND_700};
 
   border-radius: 0.7rem;
 

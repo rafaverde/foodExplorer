@@ -6,8 +6,8 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
 
-  background-color: ${({ theme }) => theme.COLORS.BACKGROUND_600};
-  color: ${({ theme }) => theme.COLORS.TEXTS_300};
+  background-color: ${({ theme }) => theme.COLORS.BACKGROUND_500};
+  color: ${({ theme }) => theme.COLORS.TEXTS_100};
 
   margin-bottom: 8px;
   border-radius: 10px;
@@ -24,7 +24,7 @@ export const Container = styled.div`
     font-size: 1.3rem;
 
     &::placeholder {
-      color: ${({ theme }) => theme.COLORS.TEXTS_500};
+      color: ${({ theme }) => theme.COLORS.TEXTS_300};
     }
 
     @media (min-width: ${DEVICE_BREAKPOINTS.MD}) {

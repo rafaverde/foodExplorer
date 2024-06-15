@@ -118,7 +118,7 @@ export const Avatar = styled.div`
     padding: 8px;
 
     border-radius: 99px;
-    background-color: lightcoral;
+    background-color: ${({ theme }) => theme.COLORS.LIGHT_RED};
 
     > svg {
       font-size: 20px;

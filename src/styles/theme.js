@@ -1,28 +1,29 @@
 export const darkTheme = {
   COLORS: {
-    BACKGROUND_100: "#000405",
-    BACKGROUND_200: "#153D4E",
-    BACKGROUND_400: "#000204",
-    BACKGROUND_500: "#0D1D25",
-    BACKGROUND_600: "#0D1D25",
-    BACKGROUND_700: "#001119",
+    BACKGROUND_100: "#FFFFFF",
+    BACKGROUND_200: "#DEECED",
+    BACKGROUND_300: "#BDD8DB",
+    BACKGROUND_400: "#7BB1B7",
+    BACKGROUND_500: "#003B4D",
+    BACKGROUND_600: "#00141A",
+    BACKGROUND_700: "#000405",
 
-    TITLES: "#E1E1E6",
+    TITLES: "#DEECED",
     TEXTS_100: "#FFFFFF",
     TEXTS_300: "#E1E1E6",
-    TEXTS_500: "#7C7C8A",
+    TEXTS_500: "#A5A5A5",
 
     ACCENT: "#82F3FF",
 
-    DARK_RED: "#750310",
-    LIGHT_RED: "#AB4D55",
-    YELLOW: "#FBA94C",
+    DARK_RED: "#DA0B0B",
+    LIGHT_RED: "#F76E6E",
+    YELLOW: "#FFB31A",
     DEEP_BLUE: "#065E7C",
     MINT_GREEN: "#04D361",
   },
 
   GRADIENTS: {
-    GRADIENT_200: "linear-gradient(180deg, #091E26 0%, #00131C 100%)",
+    GRADIENT_200: "linear-gradient(180deg, #003B4D 0%, #00141A 100%)",
   },
 
   FONTS: {
@@ -38,29 +39,30 @@ export const darkTheme = {
 
 export const lightTheme = {
   COLORS: {
-    BACKGROUND_100: "#FFFFFF",
-    BACKGROUND_200: "#FFFAF1",
-    BACKGROUND_400: "#E1E1E6",
-    BACKGROUND_500: "#C4C4CC",
-    BACKGROUND_600: "#76797B",
-    BACKGROUND_700: "#4D585E",
+    BACKGROUND_100: "#000405",
+    BACKGROUND_200: "#00141A",
+    BACKGROUND_300: "#003B4D",
+    BACKGROUND_400: "#7BB1B7",
+    BACKGROUND_500: "#BDD8DB",
+    BACKGROUND_600: "#DEECED",
+    BACKGROUND_700: "#FFFFFF",
 
-    TITLES: "#000204",
-    TEXTS_100: "#000405",
-    TEXTS_300: "#000204",
-    TEXTS_500: "#21486F",
+    TITLES: "#243F42",
+    TEXTS_100: "#000000",
+    TEXTS_300: "#416266",
+    TEXTS_500: "#9DB2B4",
 
     ACCENT: "#82F3FF",
 
-    DARK_RED: "#750310",
-    LIGHT_RED: "#AB4D55",
-    YELLOW: "#FBA94C",
+    DARK_RED: "#DA0B0B",
+    LIGHT_RED: "#F76E6E",
+    YELLOW: "#FFB31A",
     DEEP_BLUE: "#065E7C",
     MINT_GREEN: "#04D361",
   },
 
   GRADIENTS: {
-    GRADIENT_200: "linear-gradient(180deg, #091E26 0%, #00131C 100%)",
+    GRADIENT_200: "linear-gradient(180deg, #BDD8DB 0%, #DEECED 100%)",
   },
 
   FONTS: {
