@@ -23,6 +23,8 @@ export const Container = styled.div`
     z-index: 1;
     top: 50%;
     transform: translateY(-50%);
+    border: 1px solid ${({ theme }) => theme.COLORS.BACKGROUND_500};
+    background-color: ${({ theme }) => theme.COLORS.BACKGROUND_500};
     border-radius: 999px;
     animation: ${({ theme, $ison }) =>
       $ison === "true"

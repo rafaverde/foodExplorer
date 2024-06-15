@@ -50,7 +50,6 @@ export function Profile() {
 
           <Nav>
             <SwitchButton
-              icon={Sun}
               onSwitchButton={() => {
                 toggleThemeMode()
               }}
