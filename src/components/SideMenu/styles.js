@@ -13,7 +13,7 @@ export const Container = styled.aside`
   display: flex;
   flex-direction: column;
 
-  background-color: ${({ theme }) => theme.COLORS.BACKGROUND_400};
+  background-color: ${({ theme }) => theme.COLORS.BACKGROUND_600};
 
   transform: translateX(-100%);
   transition: all ease-out 0.4s;

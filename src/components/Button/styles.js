@@ -10,8 +10,7 @@ export const Container = styled.button`
   width: 100%;
   background-color: ${({ theme, $isdark }) =>
     $isdark === true ? theme.COLORS.BACKGROUND_100 : theme.COLORS.DARK_RED};
-  color: ${({ theme, $isdark }) =>
-    $isdark === true ? theme.COLORS.TEXTS_300 : theme.COLORS.TEXTS_100};
+  color: ${({ theme }) => theme.COLORS.BUTTON_TEXT};
 
   font-family: ${({ theme }) => theme.FONTS.PRIMARY_FONT};
   font-size: 1.4rem;

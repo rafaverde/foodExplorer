@@ -11,9 +11,9 @@ export const Container = styled.div`
     display: block;
     width: 64px;
     height: 24px;
-    border: 1px solid ${({ theme }) => theme.COLORS.BACKGROUND_200};
+    border: 1px solid ${({ theme }) => theme.COLORS.BACKGROUND_400};
     border-radius: 9999px;
-    background-color: ${({ theme }) => theme.COLORS.BACKGROUND_200};
+    background-color: ${({ theme }) => theme.COLORS.BACKGROUND_400};
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
   }

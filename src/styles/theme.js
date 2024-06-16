@@ -12,6 +12,7 @@ export const darkTheme = {
     TEXTS_100: "#FFFFFF",
     TEXTS_300: "#E1E1E6",
     TEXTS_500: "#A5A5A5",
+    BUTTON_TEXT: "#E1E1E6",
 
     ACCENT: "#82F3FF",
 
@@ -51,8 +52,9 @@ export const lightTheme = {
     TEXTS_100: "#000000",
     TEXTS_300: "#416266",
     TEXTS_500: "#9DB2B4",
+    BUTTON_TEXT: "#E1E1E6",
 
-    ACCENT: "#82F3FF",
+    ACCENT: "#00A7CC",
 
     DARK_RED: "#DA0B0B",
     LIGHT_RED: "#F76E6E",
