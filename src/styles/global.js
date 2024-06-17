@@ -56,5 +56,7 @@ export default createGlobalStyle`
     outline: none;
   }
 
-  
+  textarea {
+    font-family: ${({ theme }) => theme.FONTS.SECONDARY_FONT};
+  }
 `

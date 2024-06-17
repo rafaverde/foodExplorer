@@ -9,7 +9,7 @@ import {
   Receipt,
   Heart,
   SignOut,
-  Sun,
+  Lock,
 } from "@phosphor-icons/react"
 
 import { Footer } from "../../components/Footer"
@@ -49,8 +49,8 @@ export function Profile() {
             />
             <Input placeholder="Nome" type="text" icon={User} />
             <Input placeholder="E-mail" type="text" icon={Envelope} />
-            <Input placeholder="Senha Atual" type="password" icon={User} />
-            <Input placeholder="Nova Senha" type="password" icon={User} />
+            <Input placeholder="Senha Atual" type="password" icon={Lock} />
+            <Input placeholder="Nova Senha" type="password" icon={Lock} />
             <Button title="Salvar" />
           </Form>
 

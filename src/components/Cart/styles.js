@@ -4,11 +4,12 @@ import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints"
 export const Container = styled.button`
   position: relative;
 
-  color: ${({ theme }) => theme.COLORS.TEXTS_100};
+  color: ${({ theme }) => theme.COLORS.BUTTON_TEXT};
 
   > svg {
     width: 3rem;
     height: 3rem;
+    color: ${({ theme }) => theme.COLORS.TEXTS_300};
   }
 
   > .receipt-counter {
