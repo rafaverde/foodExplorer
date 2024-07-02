@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 
 import { Avatar, Container, Content, Form, Menu, Nav } from "./styles"
@@ -12,6 +13,7 @@ import {
   Heart,
   SignOut,
   Lock,
+  House,
 } from "@phosphor-icons/react"
 
 import { Footer } from "../../components/Footer"
@@ -23,10 +25,30 @@ import { Input } from "../../components/Input"
 import { SwitchButton } from "../../components/SwitchButton"
 
 import { useUI } from "../../hooks/ui"
+import { useAuth } from "../../hooks/auth"
 
 export function Profile() {
+  const { user, updateProfile } = useAuth()
+  const [name, setName] = useState(user.name)
+  const [email, setEmail] = useState(user.email)
+  const [address, setAddress] = useState(user.address)
+  const [oldPassword, setOldPassword] = useState()
+  const [newPassword, setNewPassword] = useState()
+
   const { toggleThemeMode } = useUI()
   const navigate = useNavigate()
+
+  async function handleUpdate() {
+    const user = {
+      name,
+      email,
+      address,
+      password: newPassword,
+      old_password: oldPassword,
+    }
+
+    await updateProfile({ user })
+  }
 
   function handleBackButton() {
     navigate("/")
@@ -59,11 +81,40 @@ export function Profile() {
                 toggleThemeMode()
               }}
             />
-            <Input placeholder="Nome" type="text" icon={User} />
-            <Input placeholder="E-mail" type="text" icon={Envelope} />
-            <Input placeholder="Senha Atual" type="password" icon={Lock} />
-            <Input placeholder="Nova Senha" type="password" icon={Lock} />
-            <Button title="Salvar" />
+            <Input
+              placeholder="Nome"
+              type="text"
+              icon={User}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+            <Input
+              placeholder="E-mail"
+              type="text"
+              icon={Envelope}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <Input
+              placeholder="Atualize seu endereço!"
+              type="text"
+              icon={House}
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+            />
+            <Input
+              placeholder="Senha Atual"
+              type="password"
+              icon={Lock}
+              onChange={(e) => setOldPassword(e.target.value)}
+            />
+            <Input
+              placeholder="Nova Senha"
+              type="password"
+              icon={Lock}
+              onChange={(e) => setNewPassword(e.target.value)}
+            />
+            <Button title="Salvar" onClick={handleUpdate} />
           </Form>
 
           <Nav>

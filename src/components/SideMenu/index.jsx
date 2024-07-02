@@ -1,3 +1,5 @@
+import { Link, useNavigate } from "react-router-dom"
+
 import {
   MagnifyingGlass,
   Receipt,
@@ -18,10 +20,12 @@ import { useAuth } from "../../hooks/auth"
 export function SideMenu({ onCloseMenu }) {
   const { menuIsOpen } = useUI()
   const { signOut } = useAuth()
+  const navigate = useNavigate()
 
   function handleSignOut() {
     onCloseMenu()
     signOut()
+    navigate("/")
   }
 
   return (
@@ -39,7 +43,9 @@ export function SideMenu({ onCloseMenu }) {
         </Search>
 
         <Nav>
-          <IconButton title="Minha Conta" icon={User} />
+          <Link to="/profile">
+            <IconButton title="Minha Conta" icon={User} onClick={onCloseMenu} />
+          </Link>
           <IconButton title="Meus Pedidos" icon={Receipt} />
           <IconButton title="Meus Favoritos" icon={Heart} />
           <IconButton title="Sair" icon={SignOut} onClick={handleSignOut} />

@@ -24,7 +24,7 @@ export const Container = styled.div`
     font-size: 1.3rem;
 
     &::placeholder {
-      color: ${({ theme }) => theme.COLORS.TEXTS_300};
+      color: ${({ theme }) => theme.COLORS.TEXTS_500};
     }
 
     @media (min-width: ${DEVICE_BREAKPOINTS.MD}) {
