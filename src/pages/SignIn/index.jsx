@@ -1,3 +1,6 @@
+import { useNavigate } from "react-router-dom"
+import { useState } from "react"
+
 import { Container, Form } from "./styles"
 import { EnvelopeSimple, Lock } from "@phosphor-icons/react"
 import logo from "../../assets/food-explorer-logo.svg"
@@ -9,8 +12,18 @@ import { ButtonText } from "../../components/ButtonText"
 import { useAuth } from "../../hooks/auth"
 
 export function SignIn() {
-  const data = useAuth()
-  console.log("My context >>> ", data)
+  const { signIn } = useAuth()
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+
+  const navigate = useNavigate()
+  function handleSignUpButton() {
+    navigate("/register")
+  }
+
+  function handleSignIn() {
+    signIn({ email, password })
+  }
 
   return (
     <Container>
@@ -24,6 +37,7 @@ export function SignIn() {
             icon={EnvelopeSimple}
             type="text"
             placeholder="seuemail@email.com.br"
+            onChange={(event) => setEmail(event.target.value)}
           />
         </div>
         <div className="input-wrapper">
@@ -31,11 +45,16 @@ export function SignIn() {
           <Input
             icon={Lock}
             type="password"
-            placeholder="seuemail@email.com.br"
+            placeholder="Digite sua senha"
+            onChange={(event) => setPassword(event.target.value)}
           />
         </div>
-        <Button title="Entrar" />
-        <ButtonText title="Criar uma conta" $isactive={true} />
+        <Button title="Entrar" onClick={handleSignIn} />
+        <ButtonText
+          title="Criar uma conta"
+          $isactive={true}
+          onClick={handleSignUpButton}
+        />
       </Form>
     </Container>
   )

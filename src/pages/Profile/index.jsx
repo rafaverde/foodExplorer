@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom"
+
 import { Avatar, Container, Content, Form, Menu, Nav } from "./styles"
 import avatarPlaceHolder from "../../assets/avatar_placeholder.svg"
 import {
@@ -24,12 +26,22 @@ import { useUI } from "../../hooks/ui"
 
 export function Profile() {
   const { toggleThemeMode } = useUI()
+  const navigate = useNavigate()
+
+  function handleBackButton() {
+    navigate("/")
+  }
 
   return (
     <Container>
       <Header />
       <Content>
-        <ButtonText title="Voltar" icon={CaretCircleLeft} $isactive />
+        <ButtonText
+          title="Voltar"
+          icon={CaretCircleLeft}
+          $isactive
+          onClick={handleBackButton}
+        />
 
         <Menu>
           <Form>

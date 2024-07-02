@@ -13,9 +13,16 @@ import { Container } from "./styles"
 import { IconButton } from "../IconButton"
 
 import { useUI } from "../../hooks/ui"
+import { useAuth } from "../../hooks/auth"
 
 export function SideMenu({ onCloseMenu }) {
   const { menuIsOpen } = useUI()
+  const { signOut } = useAuth()
+
+  function handleSignOut() {
+    onCloseMenu()
+    signOut()
+  }
 
   return (
     <Container data-menu-is-open={menuIsOpen}>
@@ -35,7 +42,7 @@ export function SideMenu({ onCloseMenu }) {
           <IconButton title="Minha Conta" icon={User} />
           <IconButton title="Meus Pedidos" icon={Receipt} />
           <IconButton title="Meus Favoritos" icon={Heart} />
-          <IconButton title="Sair" icon={SignOut} />
+          <IconButton title="Sair" icon={SignOut} onClick={handleSignOut} />
         </Nav>
       </div>
     </Container>

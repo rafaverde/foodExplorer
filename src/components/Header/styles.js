@@ -36,6 +36,14 @@ export const Container = styled.div`
       display: none;
     }
   }
+
+  > a > img {
+    width: 64px;
+    height: 64px;
+
+    border: 1px solid ${({ theme }) => theme.COLORS.ACCENT};
+    border-radius: 100px;
+  }
 `
 
 export const Menu = styled.button`

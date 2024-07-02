@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 import { Container, Form } from "./styles"
 import { EnvelopeSimple, Lock, User } from "@phosphor-icons/react"
@@ -16,6 +17,11 @@ export function SignUp() {
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
 
+  const navigate = useNavigate()
+  function handlBackButton() {
+    navigate("/")
+  }
+
   function handleSignUp() {
     if (!name || !email || !password) {
       return alert("Preencha todos os campos!")
@@ -27,7 +33,10 @@ export function SignUp() {
 
     api
       .post("/users", { name, email, password })
-      .then(() => alert("Usuário cadastrado com sucesso!"))
+      .then(() => {
+        alert("Usuário cadastrado com sucesso!")
+        navigate("/")
+      })
       .catch((error) => {
         if (error.response) {
           alert(error.response.data.message)
@@ -80,7 +89,11 @@ export function SignUp() {
           />
         </div>
         <Button title="Criar conta" onClick={handleSignUp} />
-        <ButtonText title="Já tem uma conta? Clique aqui." $isactive={true} />
+        <ButtonText
+          title="Já tem uma conta? Clique aqui."
+          $isactive={true}
+          onClick={handlBackButton}
+        />
       </Form>
     </Container>
   )
