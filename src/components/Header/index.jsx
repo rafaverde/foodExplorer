@@ -15,10 +15,15 @@ import { SideMenu } from "../SideMenu"
 
 import { useUI } from "../../hooks/ui"
 import { useAuth } from "../../hooks/auth"
+import { api } from "../../services/api"
 
 export function Header({ onOpenMenu }) {
   const { menuIsOpen, toggleSideMenu, isDarkTheme } = useUI()
-  const { signOut } = useAuth()
+  const { signOut, user } = useAuth()
+
+  const avatarURL = user.avatar
+    ? `${api.defaults.baseURL}/files/avatar/${user.avatar}`
+    : avatarPlaceHolder
 
   return (
     <Container>
@@ -37,7 +42,7 @@ export function Header({ onOpenMenu }) {
       <Cart />
 
       <Link to="/profile">
-        <img src={avatarPlaceHolder} alt="avatar" />
+        <img src={avatarURL} alt="avatar" />
       </Link>
 
       <LogOut onClick={signOut}>

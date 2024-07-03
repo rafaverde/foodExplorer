@@ -26,6 +26,7 @@ import { SwitchButton } from "../../components/SwitchButton"
 
 import { useUI } from "../../hooks/ui"
 import { useAuth } from "../../hooks/auth"
+import { api } from "../../services/api"
 
 export function Profile() {
   const { user, updateProfile } = useAuth()
@@ -35,11 +36,17 @@ export function Profile() {
   const [oldPassword, setOldPassword] = useState()
   const [newPassword, setNewPassword] = useState()
 
+  let avatarURL = user.avatar
+    ? `${api.defaults.baseURL}/files/avatar/${user.avatar}`
+    : avatarPlaceHolder
+  const [avatar, setAvatar] = useState(avatarURL)
+  const [avatarFile, setAvatarFile] = useState(null)
+
   const { toggleThemeMode } = useUI()
   const navigate = useNavigate()
 
   async function handleUpdate() {
-    const user = {
+    const userUpdates = {
       name,
       email,
       address,
@@ -47,7 +54,24 @@ export function Profile() {
       old_password: oldPassword,
     }
 
-    await updateProfile({ user })
+    const userUpdated = Object.assign(user, userUpdates)
+
+    await updateProfile({ user: userUpdated, avatarFile })
+  }
+
+  function handleChangeAvatar(event) {
+    const file = event.target.files[0]
+    setAvatarFile(file)
+
+    const imagePreview = URL.createObjectURL(file)
+    setAvatar(imagePreview)
+  }
+
+  async function handleAvatarDelete() {
+    setAvatarFile("empty")
+    const imagePreview = avatarPlaceHolder
+    setAvatar(imagePreview)
+    avatarURL = avatarPlaceHolder
   }
 
   function handleBackButton() {
@@ -68,12 +92,16 @@ export function Profile() {
         <Menu>
           <Form>
             <Avatar>
-              <img src={avatarPlaceHolder} alt="User Avatar" />
+              <img src={avatar} alt="User Avatar" />
               <label htmlFor="avatar">
                 <Camera />
-                <input type="file" id="avatar" />
+                <input type="file" id="avatar" onChange={handleChangeAvatar} />
               </label>
-              <IconButton icon={X} className="close-button" />
+              <IconButton
+                icon={X}
+                className="close-button"
+                onClick={handleAvatarDelete}
+              />
             </Avatar>
 
             <SwitchButton

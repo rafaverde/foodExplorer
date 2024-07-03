@@ -34,7 +34,7 @@ export const darkTheme = {
 
   ANIMATIONS: {
     SLIDE_LEFT: "slide-left 0.4s",
-    SLIDE_RIGHT: "slide-right 0.4s forwards",
+    SLIDE_RIGHT: "slide-right 0.4s",
   },
 }
 
