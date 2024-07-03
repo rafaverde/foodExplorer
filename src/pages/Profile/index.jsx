@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 
 import { Avatar, Container, Content, Form, Menu, Nav } from "./styles"
 import avatarPlaceHolder from "../../assets/avatar_placeholder.svg"
@@ -14,6 +14,7 @@ import {
   SignOut,
   Lock,
   House,
+  BowlSteam,
 } from "@phosphor-icons/react"
 
 import { Footer } from "../../components/Footer"
@@ -75,7 +76,11 @@ export function Profile() {
   }
 
   function handleBackButton() {
-    navigate("/")
+    navigate(-1)
+  }
+
+  function handleNavButton(toWhere) {
+    navigate(`/${toWhere}`)
   }
 
   return (
@@ -146,6 +151,11 @@ export function Profile() {
           </Form>
 
           <Nav>
+            <IconButton
+              title="Novo Prato"
+              icon={BowlSteam}
+              onClick={() => handleNavButton("new")}
+            />
             <IconButton title="Meus Pedidos" icon={Receipt} />
             <IconButton title="Meus Favoritos" icon={Heart} />
             <IconButton title="Sair" icon={SignOut} />

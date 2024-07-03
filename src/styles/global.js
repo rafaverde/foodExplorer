@@ -18,11 +18,11 @@ export default createGlobalStyle`
     }
 
     @media (min-width: ${DEVICE_BREAKPOINTS.LG}){
-      font-size: 120%;
+      font-size: 17px;
     }
 
     @media (min-width: ${DEVICE_BREAKPOINTS.XL}){
-      font-size: 140%;
+      font-size: 18px;
     }
   }
 

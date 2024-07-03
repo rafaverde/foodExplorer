@@ -37,12 +37,18 @@ export const Container = styled.div`
     }
   }
 
-  > a > img {
-    width: 64px;
-    height: 64px;
+  > a {
+    @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+      display: none;
+    }
 
-    border: 1px solid ${({ theme }) => theme.COLORS.ACCENT};
-    border-radius: 100px;
+    > img {
+      width: 64px;
+      height: 64px;
+
+      border: 1px solid ${({ theme }) => theme.COLORS.ACCENT};
+      border-radius: 100px;
+    }
   }
 `
 

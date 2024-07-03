@@ -1,3 +1,6 @@
+import { useState } from "react"
+import { useNavigate } from "react-router-dom"
+
 import {
   Container,
   Content,
@@ -17,11 +20,21 @@ import { Textarea } from "../../components/Textarea"
 import { Button } from "../../components/Button"
 
 export function NewPlate() {
+  const navigate = useNavigate()
+  function handleBackButton() {
+    navigate(-1)
+  }
+
   return (
     <Container>
       <Header />
       <Content>
-        <ButtonText title="Voltar" icon={CaretCircleLeft} $isactive />
+        <ButtonText
+          title="Voltar"
+          icon={CaretCircleLeft}
+          $isactive
+          onClick={handleBackButton}
+        />
         <Form>
           <h2>Adicionar Prato</h2>
 

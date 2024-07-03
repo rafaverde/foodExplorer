@@ -7,6 +7,7 @@ import {
   User,
   X,
   Heart,
+  BowlSteam,
 } from "@phosphor-icons/react"
 
 import { Header, Search, Nav } from "./styles"
@@ -43,6 +44,13 @@ export function SideMenu({ onCloseMenu }) {
         </Search>
 
         <Nav>
+          <Link to="/new">
+            <IconButton
+              title="Novo Prato"
+              icon={BowlSteam}
+              onClick={onCloseMenu}
+            />
+          </Link>
           <Link to="/profile">
             <IconButton title="Minha Conta" icon={User} onClick={onCloseMenu} />
           </Link>
