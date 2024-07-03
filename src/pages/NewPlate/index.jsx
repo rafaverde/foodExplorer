@@ -20,6 +20,25 @@ import { Textarea } from "../../components/Textarea"
 import { Button } from "../../components/Button"
 
 export function NewPlate() {
+  const [ingredients, setIngredients] = useState([])
+  const [newIngredient, setNewIngredient] = useState("")
+
+  function handleAddIngredient() {
+    if (!newIngredient) {
+      return alert("Ingrediente não pode ser vazio")
+    }
+
+    setIngredients((prevState) => [...prevState, newIngredient])
+    setNewIngredient("")
+  }
+
+  function handleRemoveIngredient(toRemove) {
+    setIngredients((prevState) =>
+      prevState.filter((ingredient, index) => index !== toRemove)
+    )
+  }
+
+  //Navigation
   const navigate = useNavigate()
   function handleBackButton() {
     navigate(-1)
@@ -66,10 +85,22 @@ export function NewPlate() {
             <Label>
               Ingredientes
               <Ingredients>
-                <IngredientItem value="Alface" />
-                <IngredientItem value="Tomate" />
-                <IngredientItem value="Cebola" />
-                <IngredientItem value="" placeholder="Novo" isNew />
+                {ingredients.map((ingredient, index) => (
+                  <IngredientItem
+                    key={String(index)}
+                    value={ingredient}
+                    onClick={() => {
+                      handleRemoveIngredient(index)
+                    }}
+                  />
+                ))}
+                <IngredientItem
+                  value={newIngredient}
+                  placeholder="Novo"
+                  isNew
+                  onChange={(e) => setNewIngredient(e.target.value)}
+                  onClick={handleAddIngredient}
+                />
               </Ingredients>
             </Label>
           </InputGroup>
