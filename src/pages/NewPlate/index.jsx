@@ -8,8 +8,10 @@ import {
   InputGroup,
   Ingredients,
   Label,
+  Thumbnail,
 } from "./styles"
 import { CaretCircleLeft, Check, Image } from "@phosphor-icons/react"
+import plateImagePlaceholder from "../../assets/plate-image_placeholder.svg"
 
 import { Header } from "../../components/Header"
 import { Footer } from "../../components/Footer"
@@ -20,8 +22,14 @@ import { Textarea } from "../../components/Textarea"
 import { Button } from "../../components/Button"
 
 export function NewPlate() {
+  const [name, setName] = useState("")
+  const [category, setCategory] = useState("")
   const [ingredients, setIngredients] = useState([])
   const [newIngredient, setNewIngredient] = useState("")
+  const [price, setPrice] = useState(0)
+  const [description, setDescription] = useState("")
+
+  const [plateImage, setPlateImage] = useState("")
 
   function handleAddIngredient() {
     if (!newIngredient) {
@@ -37,6 +45,8 @@ export function NewPlate() {
       prevState.filter((ingredient, index) => index !== toRemove)
     )
   }
+
+  async function handleNewPlate() {}
 
   //Navigation
   const navigate = useNavigate()
@@ -57,6 +67,10 @@ export function NewPlate() {
         <Form>
           <h2>Adicionar Prato</h2>
 
+          <Thumbnail>
+            <img src={plateImage ? plateImage : plateImagePlaceholder} alt="" />
+          </Thumbnail>
+
           <InputGroup>
             <Label htmlFor="plateImage" className="upload-button">
               <Image />
@@ -69,11 +83,16 @@ export function NewPlate() {
                 placeholder="Ex.: Salada Ceaser"
                 id="plateName"
                 type="text"
+                onChange={(e) => setName(e.target.value)}
               />
             </Label>
             <Label htmlFor="plateCategory">
               Categoria
-              <select name="category" id="plateCategory">
+              <select
+                name="category"
+                id="plateCategory"
+                onChange={(e) => setCategory(e.target.value)}
+              >
                 <option>Escolha uma categoria</option>
                 <option value="refeição">Refeição</option>
                 <option value="sobremesa">Sobremesas</option>
@@ -107,7 +126,12 @@ export function NewPlate() {
 
           <Label htmlFor="platePrice">
             Preço
-            <Input placeholder="R$ 00,00" id="platePrice" type="text" />
+            <Input
+              placeholder="R$ 00,00"
+              id="platePrice"
+              type="text"
+              onChange={(e) => setPrice(e.target.value)}
+            />
           </Label>
 
           <Label htmlFor="plateDescription">
@@ -115,10 +139,15 @@ export function NewPlate() {
             <Textarea
               id="plateDescription"
               placeholder="Fale brevemente sobre o prato, seus ingredientes e composição"
+              onChange={(e) => setDescription(e.target.value)}
             />
           </Label>
           <div className="save-button">
-            <Button title="Salvar Alterações" icon={Check} />
+            <Button
+              title="Salvar Alterações"
+              icon={Check}
+              onClick={handleNewPlate}
+            />
           </div>
         </Form>
       </Content>

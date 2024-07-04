@@ -97,7 +97,7 @@ export function Profile() {
         <Menu>
           <Form>
             <Avatar>
-              <img src={avatar} alt="User Avatar" />
+              <img src={avatar} alt={user.name} />
               <label htmlFor="avatar">
                 <Camera />
                 <input type="file" id="avatar" onChange={handleChangeAvatar} />

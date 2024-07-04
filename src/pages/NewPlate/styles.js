@@ -112,6 +112,16 @@ export const Form = styled.form`
   }
 `
 
+export const Thumbnail = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  > img {
+    width: 180px;
+  }
+`
+
 export const InputGroup = styled.div`
   @media (min-width: ${DEVICE_BREAKPOINTS.MD}) {
     display: flex;
