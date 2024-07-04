@@ -21,7 +21,15 @@ import { IngredientItem } from "../../components/IngredientItem"
 import { Textarea } from "../../components/Textarea"
 import { Button } from "../../components/Button"
 
+import { api } from "../../services/api"
+
 export function NewPlate() {
+  //Navigation
+  const navigate = useNavigate()
+  function handleBackButton() {
+    navigate(-1)
+  }
+
   const [name, setName] = useState("")
   const [category, setCategory] = useState("")
   const [ingredients, setIngredients] = useState([])
@@ -30,6 +38,7 @@ export function NewPlate() {
   const [description, setDescription] = useState("")
 
   const [plateImage, setPlateImage] = useState("")
+  const [plateImageFile, setPlateImageFile] = useState(null)
 
   function handleAddIngredient() {
     if (!newIngredient) {
@@ -46,12 +55,60 @@ export function NewPlate() {
     )
   }
 
-  async function handleNewPlate() {}
+  function handlePlateImageChange(event) {
+    const file = event.target.files[0]
+    setPlateImageFile(file)
 
-  //Navigation
-  const navigate = useNavigate()
-  function handleBackButton() {
-    navigate(-1)
+    const imagePreview = URL.createObjectURL(file)
+    setPlateImage(imagePreview)
+  }
+
+  async function handleNewPlate() {
+    if (!name || !description || !ingredients || !price || !category) {
+      return alert(
+        "Todos os campos são obrigatórios. Confira e preencha novamente."
+      )
+    }
+
+    if (newIngredient) {
+      return alert(
+        "Um dos ingredientes não foi adicionado, clique em + ou deixe sem informações."
+      )
+    }
+
+    const plate = {
+      name,
+      description,
+      ingredients,
+      price,
+      category,
+    }
+
+    try {
+      if (plateImageFile) {
+        const plateResponse = await api.post("/plates", plate)
+        const fileUploadForm = new FormData()
+        fileUploadForm.append("image", plateImageFile)
+
+        const response = await api.patch(
+          `/plates/image/${plateResponse.data}`,
+          fileUploadForm
+        )
+        const plateImageURL = `${api.defaults.baseURL}/files/plates/${response.data.image}`
+        setPlateImage(plateImageURL)
+      } else {
+        return alert("É obrigatório colocar uma imagem do prato.")
+      }
+
+      alert("Prato cadastrado com sucesso!")
+    } catch (error) {
+      if (error.response) {
+        alert(error.response.data.message)
+      } else {
+        alert("Não foi possível cadastrar o prato. Tente novamente mais tarde.")
+      }
+    }
+    navigate("/")
   }
 
   return (
@@ -75,7 +132,11 @@ export function NewPlate() {
             <Label htmlFor="plateImage" className="upload-button">
               <Image />
               <span>Selecionar Imagem do Prato</span>
-              <input type="file" id="plateImage" />
+              <input
+                type="file"
+                id="plateImage"
+                onChange={handlePlateImageChange}
+              />
             </Label>
             <Label htmlFor="plateName">
               Nome do Prato

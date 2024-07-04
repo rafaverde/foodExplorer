@@ -119,6 +119,7 @@ export const Thumbnail = styled.div`
 
   > img {
     width: 180px;
+    border-radius: 200px;
   }
 `
 
