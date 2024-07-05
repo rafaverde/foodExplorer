@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import CreatableSelect from "react-select/creatable"
 
 import {
   Container,
@@ -32,7 +33,8 @@ export function NewPlate() {
 
   //Plate
   const [name, setName] = useState("")
-  const [category, setCategory] = useState("")
+  const [category, setCategory] = useState("Selecione ou Crie uma categoria")
+  const [categoryOptions, setCategoryOptions] = useState([])
   const [ingredients, setIngredients] = useState([])
   const [newIngredient, setNewIngredient] = useState("")
   const [price, setPrice] = useState(0)
@@ -112,16 +114,22 @@ export function NewPlate() {
     navigate("/")
   }
 
+  function handleCreateCategoryOption(newOption) {
+    const newCategory = { value: newOption, label: newOption }
+    setCategoryOptions((prevOptions) => [...prevOptions, newCategory])
+    setCategory(newOption)
+  }
+
   useEffect(() => {
     async function fetchCategories() {
       const categories = (await api.get("/categories")).data
 
-      const categoryOptions = categories.map(
-        (category) =>
-          `{value: "${category.name}", label: "${category.name}, isFixed: true"}`
-      )
+      const categoryOptions = categories.map((category) => ({
+        value: category.name,
+        label: category.name,
+      }))
 
-      console.log(categoryOptions)
+      setCategoryOptions(categoryOptions)
     }
     fetchCategories()
   }, [])
@@ -164,15 +172,15 @@ export function NewPlate() {
             </Label>
             <Label htmlFor="plateCategory">
               Categoria
-              <select
-                name="category"
-                id="plateCategory"
-                onChange={(e) => setCategory(e.target.value)}
-              >
-                <option>Escolha uma categoria</option>
-                <option value="Refeição">Refeição</option>
-                <option value="Sobremesa">Sobremesas</option>
-              </select>
+              <CreatableSelect
+                options={categoryOptions}
+                value={category}
+                onChange={(newValue) => setCategory(newValue)}
+                onCreateOption={(newValue) =>
+                  handleCreateCategoryOption(newValue)
+                }
+                styles={creatableSelectCustomStyles}
+              />
             </Label>
           </InputGroup>
 

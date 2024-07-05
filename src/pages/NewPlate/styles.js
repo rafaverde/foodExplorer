@@ -1,6 +1,5 @@
 import styled from "styled-components"
 import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints"
-import { ArrowDown } from "@phosphor-icons/react"
 
 export const Container = styled.div`
   display: grid;
@@ -72,26 +71,6 @@ export const Form = styled.form`
       > span {
         font-size: 1rem;
       }
-    }
-  }
-
-  select {
-    width: 100%;
-    padding: 16px;
-
-    color: ${({ theme }) => theme.COLORS.TEXTS_300};
-    background-color: ${({ theme }) => theme.COLORS.BACKGROUND_500};
-    border: none;
-    border-radius: 0.7rem;
-
-    font-size: 1.4rem;
-
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-
-    @media (min-width: ${DEVICE_BREAKPOINTS.MD}) {
-      font-size: 0.8rem;
     }
   }
 
