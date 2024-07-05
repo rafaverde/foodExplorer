@@ -33,7 +33,7 @@ export function NewPlate() {
 
   //Plate
   const [name, setName] = useState("")
-  const [category, setCategory] = useState("Selecione ou Crie uma categoria")
+  const [category, setCategory] = useState([])
   const [categoryOptions, setCategoryOptions] = useState([])
   const [ingredients, setIngredients] = useState([])
   const [newIngredient, setNewIngredient] = useState("")
@@ -106,18 +106,17 @@ export function NewPlate() {
       alert("Prato cadastrado com sucesso!")
     } catch (error) {
       if (error.response) {
-        alert(error.response.data.message)
+        console.log(error.response.data.message)
       } else {
         alert("Não foi possível cadastrar o prato. Tente novamente mais tarde.")
       }
     }
-    navigate("/")
+    // navigate("/")
   }
 
   function handleCreateCategoryOption(newOption) {
     const newCategory = { value: newOption, label: newOption }
     setCategoryOptions((prevOptions) => [...prevOptions, newCategory])
-    setCategory(newOption)
   }
 
   useEffect(() => {
@@ -174,8 +173,8 @@ export function NewPlate() {
               Categoria
               <CreatableSelectInput
                 options={categoryOptions}
-                value={category}
-                onChange={(newValue) => setCategory(newValue)}
+                value={category.value}
+                onChange={(event) => setCategory(event.value)}
                 onCreateOption={(newValue) =>
                   handleCreateCategoryOption(newValue)
                 }
