@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import CreatableSelect from "react-select/creatable"
 
 import {
   Container,
@@ -21,6 +20,7 @@ import { Input } from "../../components/Input"
 import { IngredientItem } from "../../components/IngredientItem"
 import { Textarea } from "../../components/Textarea"
 import { Button } from "../../components/Button"
+import { CreatableSelectInput } from "../../components/CreatableSelectInput"
 
 import { api } from "../../services/api"
 
@@ -172,14 +172,13 @@ export function NewPlate() {
             </Label>
             <Label htmlFor="plateCategory">
               Categoria
-              <CreatableSelect
+              <CreatableSelectInput
                 options={categoryOptions}
                 value={category}
                 onChange={(newValue) => setCategory(newValue)}
                 onCreateOption={(newValue) =>
                   handleCreateCategoryOption(newValue)
                 }
-                styles={creatableSelectCustomStyles}
               />
             </Label>
           </InputGroup>
