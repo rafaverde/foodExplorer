@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 
 import {
@@ -30,6 +30,7 @@ export function NewPlate() {
     navigate(-1)
   }
 
+  //Plate
   const [name, setName] = useState("")
   const [category, setCategory] = useState("")
   const [ingredients, setIngredients] = useState([])
@@ -111,6 +112,20 @@ export function NewPlate() {
     navigate("/")
   }
 
+  useEffect(() => {
+    async function fetchCategories() {
+      const categories = (await api.get("/categories")).data
+
+      const categoryOptions = categories.map(
+        (category) =>
+          `{value: "${category.name}", label: "${category.name}, isFixed: true"}`
+      )
+
+      console.log(categoryOptions)
+    }
+    fetchCategories()
+  }, [])
+
   return (
     <Container>
       <Header />
@@ -155,8 +170,8 @@ export function NewPlate() {
                 onChange={(e) => setCategory(e.target.value)}
               >
                 <option>Escolha uma categoria</option>
-                <option value="refeição">Refeição</option>
-                <option value="sobremesa">Sobremesas</option>
+                <option value="Refeição">Refeição</option>
+                <option value="Sobremesa">Sobremesas</option>
               </select>
             </Label>
           </InputGroup>
