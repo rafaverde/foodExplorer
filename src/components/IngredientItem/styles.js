@@ -45,6 +45,7 @@ export const Container = styled.div`
     border: none;
 
     font-size: 1.4rem;
+    text-transform: capitalize;
 
     &::placeholder {
       color: ${({ theme }) => theme.COLORS.TEXTS_300};

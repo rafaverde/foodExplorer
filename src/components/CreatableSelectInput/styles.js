@@ -6,6 +6,8 @@ export const Container = styled(CreatableSelect)`
   .Select__control {
     height: 56px;
 
+    text-transform: capitalize;
+
     border: none;
     border-radius: 10px;
     color: ${({ theme }) => theme.COLORS.TEXTS_300};
@@ -26,6 +28,7 @@ export const Container = styled(CreatableSelect)`
 
   .Select__placeholder {
     color: ${({ theme }) => theme.COLORS.TEXTS_500};
+    text-transform: none;
   }
 
   .Select__input-container,
@@ -41,6 +44,8 @@ export const Container = styled(CreatableSelect)`
     display: flex;
     align-items: center;
     height: 50px;
+
+    text-transform: capitalize;
 
     border-bottom: 1px solid ${({ theme }) => theme.COLORS.BACKGROUND_400};
     background-color: ${({ theme }) => theme.COLORS.BACKGROUND_500};

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { NumericFormat } from "react-number-format"
 
 import {
   Container,
@@ -111,7 +112,7 @@ export function NewPlate() {
         alert("Não foi possível cadastrar o prato. Tente novamente mais tarde.")
       }
     }
-    // navigate("/")
+    navigate("/")
   }
 
   function handleCreateCategoryOption(newOption) {
@@ -145,11 +146,9 @@ export function NewPlate() {
         />
         <Form>
           <h2>Adicionar Prato</h2>
-
           <Thumbnail>
             <img src={plateImage ? plateImage : plateImagePlaceholder} alt="" />
           </Thumbnail>
-
           <InputGroup>
             <Label htmlFor="plateImage" className="upload-button">
               <Image />
@@ -181,7 +180,6 @@ export function NewPlate() {
               />
             </Label>
           </InputGroup>
-
           <InputGroup>
             <Label>
               Ingredientes
@@ -199,20 +197,26 @@ export function NewPlate() {
                   value={newIngredient}
                   placeholder="Novo"
                   isNew
-                  onChange={(e) => setNewIngredient(e.target.value)}
+                  onChange={(e) =>
+                    setNewIngredient(e.target.value.toLowerCase())
+                  }
                   onClick={handleAddIngredient}
                 />
               </Ingredients>
             </Label>
           </InputGroup>
-
           <Label htmlFor="platePrice">
             Preço
-            <Input
-              placeholder="R$ 00,00"
-              id="platePrice"
-              type="text"
-              onChange={(e) => setPrice(e.target.value)}
+            <NumericFormat
+              customInput={Input}
+              prefix="R$ "
+              thousandSeparator="."
+              decimalScale={2}
+              decimalSeparator=","
+              fixedDecimalScale={true}
+              allowNegative={false}
+              placeholder="R$ 0,00"
+              onChange={(e) => setPrice(e.target.value.replace("R$ ", ""))}
             />
           </Label>
 
