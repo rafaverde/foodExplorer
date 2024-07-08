@@ -21,14 +21,14 @@ export const Container = styled.div`
     background: transparent;
     border: none;
 
-    font-size: 1.3rem;
+    font-size: 1.4rem;
 
     &::placeholder {
       color: ${({ theme }) => theme.COLORS.TEXTS_500};
     }
 
     @media (min-width: ${DEVICE_BREAKPOINTS.MD}) {
-      font-size: 0.8rem;
+      font-size: 1rem;
     }
   }
 

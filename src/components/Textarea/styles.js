@@ -18,7 +18,7 @@ export const Container = styled.textarea`
   font-size: 1.4rem;
 
   @media (min-width: ${DEVICE_BREAKPOINTS.MD}) {
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
 
   &::placeholder {
