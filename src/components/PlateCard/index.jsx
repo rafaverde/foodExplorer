@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom"
+
 import { Container, Infos } from "./styles"
 
 import { IconButton } from "../../components/IconButton"
@@ -5,16 +7,21 @@ import { Button } from "../../components/Button"
 import { Counter } from "../../components/Counter"
 
 import { Heart, PlusCircle } from "@phosphor-icons/react"
-// import plateTemp from "../../assets/plates/plate-gambe.png"
 
 import { useState } from "react"
+import { ButtonText } from "../ButtonText"
 
-export function PlateCard({ image, name, description, price }) {
+export function PlateCard({ id, image, name, description, price }) {
   const [isFavourite, setIsFavourite] = useState(false)
   const [counterValue, setCounterValue] = useState(0)
   const platePrice = parseFloat(price.replace(",", ".") * counterValue).toFixed(
     2
   )
+  const navigate = useNavigate()
+
+  function handleDetails(id) {
+    navigate(`/plate/${id}`)
+  }
 
   function handleFavouriteClick() {
     setIsFavourite((prevState) => !prevState)
@@ -33,12 +40,15 @@ export function PlateCard({ image, name, description, price }) {
         onClick={handleFavouriteClick}
       />
 
-      <img src={image} alt="" />
+      <img src={image} alt={name} />
 
       <Infos>
-        <h3>
-          {name} {">"}
-        </h3>
+        <ButtonText
+          title={name}
+          onClick={() => {
+            handleDetails(id)
+          }}
+        />
         <p>{description}</p>
         <span>R$ {platePrice.replace(".", ",")}</span>
       </Infos>

@@ -31,7 +31,6 @@ export function Home() {
       const response = await api.get("/plates?plate_name&ingredients")
 
       setPlates(response.data)
-      console.log(plates)
     }
 
     fetchPlates()
@@ -53,6 +52,7 @@ export function Home() {
                     .map((filteredPlate) => (
                       <SplideSlide key={filteredPlate.id}>
                         <PlateCard
+                          id={filteredPlate.id}
                           image={`${plateImageURL}${filteredPlate.image}`}
                           name={filteredPlate.name}
                           description={filteredPlate.description}

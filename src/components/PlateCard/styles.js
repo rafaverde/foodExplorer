@@ -37,15 +37,16 @@ export const Infos = styled.div`
   align-items: center;
   gap: 12px;
 
-  > h3 {
-    font-size: 1rem;
-    font-weight: 500;
+  > button {
+    color: ${({ theme }) => theme.COLORS.TEXTS_300};
+    font-size: 1.5rem;
+    font-weight: 700;
   }
 
   > p {
     display: none;
     text-align: center;
-    font-size: 0.8rem;
+    font-size: 1rem;
 
     @media (min-width: ${DEVICE_BREAKPOINTS.MD}) {
       display: block;
@@ -53,7 +54,7 @@ export const Infos = styled.div`
   }
 
   > span {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     font-weight: 700;
 
     color: ${({ theme }) => theme.COLORS.ACCENT};

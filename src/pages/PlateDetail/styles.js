@@ -20,7 +20,7 @@ export const Content = styled.div`
 
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 30px;
 `
 
 export const Details = styled.div`
@@ -29,7 +29,7 @@ export const Details = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
+  gap: 30px;
 
   > img {
     width: 264px;
@@ -39,6 +39,9 @@ export const Details = styled.div`
     flex-direction: row;
     justify-content: center;
     gap: 40px;
+
+    max-width: 960px;
+    margin: 0 auto;
 
     > img {
       width: 390px;

@@ -186,7 +186,6 @@ export function NewPlate() {
                 }
               />
             </Label>
-            <p>{category}</p>
           </InputGroup>
           <InputGroup>
             <Label>

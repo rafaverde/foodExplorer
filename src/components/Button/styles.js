@@ -31,10 +31,10 @@ export const Container = styled.button`
   }
 
   > svg {
-    font-size: 1.2rem;
+    font-size: 1.6rem;
   }
 
   @media (min-width: ${DEVICE_BREAKPOINTS.MD}) {
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 `
