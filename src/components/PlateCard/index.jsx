@@ -5,14 +5,16 @@ import { Button } from "../../components/Button"
 import { Counter } from "../../components/Counter"
 
 import { Heart, PlusCircle } from "@phosphor-icons/react"
-import plateTemp from "../../assets/plates/plate-gambe.png"
+// import plateTemp from "../../assets/plates/plate-gambe.png"
 
 import { useState } from "react"
 
-export function PlateCard() {
+export function PlateCard({ image, name, description, price }) {
   const [isFavourite, setIsFavourite] = useState(false)
-  const price = 47.9
   const [counterValue, setCounterValue] = useState(0)
+  const platePrice = parseFloat(price.replace(",", ".") * counterValue).toFixed(
+    2
+  )
 
   function handleFavouriteClick() {
     setIsFavourite((prevState) => !prevState)
@@ -31,12 +33,14 @@ export function PlateCard() {
         onClick={handleFavouriteClick}
       />
 
-      <img src={plateTemp} alt="" />
+      <img src={image} alt="" />
 
       <Infos>
-        <h3>Salada Ravanello {">"}</h3>
-        <p>Massa fresca com camarões e pesto.</p>
-        <span>R$ {(price * counterValue).toFixed(2)}</span>
+        <h3>
+          {name} {">"}
+        </h3>
+        <p>{description}</p>
+        <span>R$ {platePrice.replace(".", ",")}</span>
       </Infos>
 
       <Counter onCounterChange={handleCounterChange} />

@@ -22,6 +22,6 @@ export const Container = styled.textarea`
   }
 
   &::placeholder {
-    color: ${({ theme }) => theme.COLORS.TEXTS_300};
+    color: ${({ theme }) => theme.COLORS.TEXTS_500};
   }
 `

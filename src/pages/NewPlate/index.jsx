@@ -68,7 +68,14 @@ export function NewPlate() {
   }
 
   async function handleNewPlate() {
-    if (!name || !description || !ingredients || !price || !category) {
+    if (
+      !name ||
+      !description ||
+      !ingredients ||
+      !price ||
+      !category ||
+      typeof category === "object"
+    ) {
       return alert(
         "Todos os campos são obrigatórios. Confira e preencha novamente."
       )
@@ -179,6 +186,7 @@ export function NewPlate() {
                 }
               />
             </Label>
+            <p>{category}</p>
           </InputGroup>
           <InputGroup>
             <Label>

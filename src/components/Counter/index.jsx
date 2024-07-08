@@ -19,9 +19,7 @@ export function Counter({ onCounterChange }) {
     if (productCounter > 1) {
       setDisableButton(false)
     }
-  }, [productCounter])
 
-  useEffect(() => {
     onCounterChange(productCounter)
   }, [productCounter])
 
