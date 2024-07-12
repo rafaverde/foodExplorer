@@ -42,6 +42,7 @@ export function EditPlate() {
   const [categoryOptions, setCategoryOptions] = useState([])
   const [ingredients, setIngredients] = useState([])
   const [newIngredient, setNewIngredient] = useState("")
+  const [deletedIngredients, setDeletedIngredients] = useState([])
   const [price, setPrice] = useState(0)
   const [description, setDescription] = useState("")
 
@@ -55,13 +56,20 @@ export function EditPlate() {
     }
 
     setIngredients((prevState) => [...prevState, newIngredient])
+
+    setDeletedIngredients((prevState) =>
+      prevState.filter((ingredient) => ingredient !== newIngredient)
+    )
+
     setNewIngredient("")
   }
 
   function handleRemoveIngredient(toRemove) {
     setIngredients((prevState) =>
-      prevState.filter((ingredient, index) => index !== toRemove)
+      prevState.filter((ingredient, index) => ingredient !== toRemove)
     )
+
+    setDeletedIngredients((prevState) => [...prevState, toRemove])
   }
 
   function handlePlateImageChange(event) {
@@ -96,17 +104,16 @@ export function EditPlate() {
       name,
       description,
       ingredients,
+      deletedIngredients,
       price,
       category,
     }
 
     try {
       if (plateImageFile) {
-        const plateResponse = await api.put(`/plates/${params.id}`, plate)
+        // const plateResponse = await api.put(`/plates/${params.id}`, plate)
         const fileUploadForm = new FormData()
         fileUploadForm.append("image", plateImageFile)
-
-        console.log(plateResponse.data)
 
         const response = await api.patch(
           `/plates/image/${params.id}`,
@@ -114,8 +121,8 @@ export function EditPlate() {
         )
         const plateImageURL = `${plateImageBaseURL}${response.data.image}`
         setPlateImage(plateImageURL)
+        await api.put(`/plates/${params.id}`, plate)
       } else {
-        console.log(plate)
         await api.put(`/plates/${params.id}`, plate)
       }
 
@@ -225,7 +232,7 @@ export function EditPlate() {
                       key={String(index)}
                       value={ingredient}
                       onClick={() => {
-                        handleRemoveIngredient(index)
+                        handleRemoveIngredient(ingredient)
                       }}
                     />
                   ))}
