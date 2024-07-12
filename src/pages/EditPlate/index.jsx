@@ -11,7 +11,7 @@ import {
   Label,
   Thumbnail,
 } from "./styles"
-import { CaretCircleLeft, Check, Image } from "@phosphor-icons/react"
+import { CaretCircleLeft, Check, Image, Trash } from "@phosphor-icons/react"
 import plateImagePlaceholder from "../../assets/plate-image_placeholder.svg"
 
 import { Header } from "../../components/Header"
@@ -129,9 +129,26 @@ export function EditPlate() {
       alert("Prato atualizado com sucesso!")
     } catch (error) {
       if (error.response) {
-        console.log(error.response.data.message)
+        alert(error.response.data.message)
       } else {
         alert("Não foi possível cadastrar o prato. Tente novamente mais tarde.")
+      }
+    }
+  }
+
+  async function handleDeletePlate() {
+    try {
+      const confirm = window.confirm("Tem certeza que deseja excluir o prato?")
+      if (confirm) {
+        await api.delete(`/plates/${params.id}`)
+        alert("Prato excluído com sucesso!")
+        navigate("/")
+      }
+    } catch (error) {
+      if (error.response) {
+        alert(error.response.data.message)
+      } else {
+        alert("Não foi possível deletar o prato. Tente novamente mais tarde.")
       }
     }
   }
@@ -278,6 +295,13 @@ export function EditPlate() {
                 title="Salvar Alterações"
                 icon={Check}
                 onClick={handleUpdatePlate}
+              />
+            </div>
+            <div className="save-button">
+              <Button
+                title="Excluir Prato"
+                icon={Trash}
+                onClick={handleDeletePlate}
               />
             </div>
           </Form>
