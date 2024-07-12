@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route, Navigate } from "react-router-dom"
 
 import { Home } from "../pages/Home"
 import { PlateDetail } from "../pages/PlateDetail"
@@ -14,6 +14,8 @@ export function AppRoutes() {
       <Route path="/profile" element={<Profile />} />
       <Route path="/new" element={<NewPlate />} />
       <Route path="/edit/:id" element={<EditPlate />} />
+
+      <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   )
 }

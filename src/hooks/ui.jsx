@@ -8,10 +8,12 @@ export const UIContext = createContext({})
 
 function UIProvider({ children }) {
   //Theme Mode manipulation
-  const [isDarkTheme, setIsDarkTheme] = useState(false)
+  const checkUserTheme = localStorage.getItem("@foodexplorer:theme")
+  const [isDarkTheme, setIsDarkTheme] = useState(checkUserTheme)
 
   function toggleThemeMode() {
     setIsDarkTheme((prevState) => !prevState)
+    localStorage.setItem("@foodexplorer:theme", isDarkTheme)
   }
 
   //Side Menu manipulation

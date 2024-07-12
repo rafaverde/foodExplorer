@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 import avatarPlaceHolder from "../../assets/avatar_placeholder.svg"
 
@@ -20,10 +20,16 @@ import { api } from "../../services/api"
 export function Header({ onOpenMenu }) {
   const { menuIsOpen, toggleSideMenu, isDarkTheme, setSearch } = useUI()
   const { signOut, user } = useAuth()
+  const navigate = useNavigate()
 
   const avatarURL = user.avatar
     ? `${api.defaults.baseURL}/files/avatar/${user.avatar}`
     : avatarPlaceHolder
+
+  function handleSignOut() {
+    navigate("/")
+    signOut()
+  }
 
   return (
     <Container>
@@ -46,7 +52,7 @@ export function Header({ onOpenMenu }) {
         <img src={avatarURL} alt="avatar" />
       </Link>
 
-      <LogOut onClick={signOut}>
+      <LogOut onClick={handleSignOut}>
         <SignOut></SignOut>
       </LogOut>
     </Container>
