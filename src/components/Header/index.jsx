@@ -18,7 +18,7 @@ import { useAuth } from "../../hooks/auth"
 import { api } from "../../services/api"
 
 export function Header({ onOpenMenu }) {
-  const { menuIsOpen, toggleSideMenu, isDarkTheme } = useUI()
+  const { menuIsOpen, toggleSideMenu, isDarkTheme, setSearch } = useUI()
   const { signOut, user } = useAuth()
 
   const avatarURL = user.avatar
@@ -35,7 +35,8 @@ export function Header({ onOpenMenu }) {
       <Search>
         <Input
           icon={MagnifyingGlass}
-          placeholder="Busque por pratos ou igredientes"
+          placeholder="Busque por pratos ou ingredientes"
+          onChange={(event) => setSearch(event.target.value)}
         />
       </Search>
       <Button icon={Receipt} title="Pedidos (0)" className="order-button" />

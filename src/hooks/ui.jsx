@@ -21,6 +21,9 @@ function UIProvider({ children }) {
     setMenuIsOpen((prevState) => !prevState)
   }
 
+  //Search states
+  const [search, setSearch] = useState("")
+
   //Returning ui and theme providers
   return (
     <UIContext.Provider
@@ -29,6 +32,8 @@ function UIProvider({ children }) {
         menuIsOpen,
         toggleSideMenu,
         toggleThemeMode,
+        search,
+        setSearch,
       }}
     >
       <ThemeProvider theme={!isDarkTheme ? darkTheme : lightTheme}>

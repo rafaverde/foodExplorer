@@ -13,8 +13,11 @@ import { PlateCard } from "../../components/PlateCard"
 import { Footer } from "../../components/Footer"
 
 import { api } from "../../services/api"
+import { useUI } from "../../hooks/ui"
 
 export function Home() {
+  const { search } = useUI()
+
   const [categories, setCategories] = useState([])
   const [plates, setPlates] = useState([])
   const plateImageURL = `${api.defaults.baseURL}/files/plates/`
@@ -22,19 +25,24 @@ export function Home() {
   useEffect(() => {
     async function fetchCategories() {
       const response = await api.get("/categories")
+
       setCategories(response.data)
     }
 
     fetchCategories()
+  }, [])
 
+  useEffect(() => {
     async function fetchPlates() {
-      const response = await api.get("/plates?plate_name&ingredients")
+      const response = await api.get(
+        `/plates?plate_name=${search}&ingredients=${search}`
+      )
 
       setPlates(response.data)
     }
 
     fetchPlates()
-  }, [])
+  }, [search])
   return (
     <Container>
       <Header />
