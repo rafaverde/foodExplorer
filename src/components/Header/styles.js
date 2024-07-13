@@ -37,7 +37,7 @@ export const Container = styled.div`
     }
   }
 
-  > a {
+  > .avatar {
     @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
       display: none;
     }
@@ -48,6 +48,20 @@ export const Container = styled.div`
 
       border: 1px solid ${({ theme }) => theme.COLORS.ACCENT};
       border-radius: 100px;
+    }
+  }
+
+  > .add-plate {
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    align-items: center;
+
+    color: ${({ theme }) => theme.COLORS.TEXTS_100};
+    font-size: 22px;
+
+    &:hover {
+      opacity: 0.85;
     }
   }
 `
@@ -63,6 +77,26 @@ export const Menu = styled.button`
 
   @media (min-width: ${DEVICE_BREAKPOINTS.LG}) {
     display: none;
+  }
+`
+
+export const Brand = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  > span {
+    padding: 4px 10px;
+    background-color: ${({ theme }) => theme.COLORS.ACCENT};
+    border-radius: 99px;
+    color: ${({ theme }) => theme.COLORS.BACKGROUND_700};
+  }
+
+  @media (min-width: ${DEVICE_BREAKPOINTS.MD}) {
+    flex-direction: column;
+    gap: 0;
+    align-items: end;
+    font-size: 0.8rem;
   }
 `
 

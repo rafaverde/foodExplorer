@@ -17,10 +17,11 @@ import { IconButton } from "../IconButton"
 
 import { useUI } from "../../hooks/ui"
 import { useAuth } from "../../hooks/auth"
+import { USER_ROLE } from "../../utils/roles"
 
 export function SideMenu({ onCloseMenu }) {
   const { menuIsOpen } = useUI()
-  const { signOut } = useAuth()
+  const { signOut, user } = useAuth()
   const navigate = useNavigate()
 
   function handleSignOut() {
@@ -44,13 +45,15 @@ export function SideMenu({ onCloseMenu }) {
         </Search>
 
         <Nav>
-          <Link to="/new">
-            <IconButton
-              title="Novo Prato"
-              icon={BowlSteam}
-              onClick={onCloseMenu}
-            />
-          </Link>
+          {[USER_ROLE.ADMIN].includes(user.role) && (
+            <Link to="/new">
+              <IconButton
+                title="Novo Prato"
+                icon={BowlSteam}
+                onClick={onCloseMenu}
+              />
+            </Link>
+          )}
           <Link to="/profile">
             <IconButton title="Minha Conta" icon={User} onClick={onCloseMenu} />
           </Link>

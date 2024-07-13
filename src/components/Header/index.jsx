@@ -2,9 +2,16 @@ import { Link, useNavigate } from "react-router-dom"
 
 import avatarPlaceHolder from "../../assets/avatar_placeholder.svg"
 
-import { Container, LogOut, Menu, Search } from "./styles"
+import { Brand, Container, LogOut, Menu, Search } from "./styles"
 
-import { List, MagnifyingGlass, Receipt, SignOut } from "@phosphor-icons/react"
+import {
+  List,
+  MagnifyingGlass,
+  PlusCircle,
+  Receipt,
+  SignOut,
+  BowlSteam,
+} from "@phosphor-icons/react"
 import logo from "../../assets/food-explorer-logo.svg"
 import darkLogo from "../../assets/food-explorer-dark-logo.svg"
 
@@ -12,10 +19,12 @@ import { Cart } from "../Cart"
 import { Input } from "../Input"
 import { Button } from "../Button"
 import { SideMenu } from "../SideMenu"
+import { IconButton } from "../IconButton"
 
 import { useUI } from "../../hooks/ui"
 import { useAuth } from "../../hooks/auth"
 import { api } from "../../services/api"
+import { USER_ROLE } from "../../utils/roles"
 
 export function Header({ onOpenMenu }) {
   const { menuIsOpen, toggleSideMenu, isDarkTheme, setSearch } = useUI()
@@ -37,7 +46,10 @@ export function Header({ onOpenMenu }) {
       <Menu onClick={() => toggleSideMenu()}>
         <List />
       </Menu>
-      <img src={isDarkTheme ? darkLogo : logo} />
+      <Brand>
+        <img src={isDarkTheme ? darkLogo : logo} />
+        {[USER_ROLE.ADMIN].includes(user.role) && <span>admin</span>}
+      </Brand>
       <Search>
         <Input
           icon={MagnifyingGlass}
@@ -45,15 +57,32 @@ export function Header({ onOpenMenu }) {
           onChange={(event) => setSearch(event.target.value)}
         />
       </Search>
-      <Button icon={Receipt} title="Pedidos (0)" className="order-button" />
-      <Cart />
+      {[USER_ROLE.CUSTOMER].includes(user.role) && (
+        <>
+          <Button icon={Receipt} title="Pedidos (0)" className="order-button" />
+          <Cart />
+        </>
+      )}
+      {[USER_ROLE.ADMIN].includes(user.role) && (
+        <>
+          <Button
+            icon={PlusCircle}
+            title="Novo Prato"
+            className="order-button"
+          />
+          <Link to="/new" className="add-plate">
+            <PlusCircle />
+            <IconButton icon={BowlSteam} />
+          </Link>
+        </>
+      )}
 
-      <Link to="/profile">
+      <Link to="/profile" className="avatar">
         <img src={avatarURL} alt="avatar" />
       </Link>
 
       <LogOut onClick={handleSignOut}>
-        <SignOut></SignOut>
+        <SignOut />
       </LogOut>
     </Container>
   )

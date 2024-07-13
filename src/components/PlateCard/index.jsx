@@ -11,7 +11,11 @@ import { Heart, Pencil, PlusCircle } from "@phosphor-icons/react"
 import { useState } from "react"
 import { ButtonText } from "../ButtonText"
 
+import { useAuth } from "../../hooks/auth"
+import { USER_ROLE } from "../../utils/roles"
+
 export function PlateCard({ id, image, name, description, price }) {
+  const { user } = useAuth()
   const [isFavourite, setIsFavourite] = useState(false)
   const [counterValue, setCounterValue] = useState(0)
   const platePrice = parseFloat(price.replace(",", ".") * counterValue).toFixed(
@@ -37,19 +41,23 @@ export function PlateCard({ id, image, name, description, price }) {
 
   return (
     <Container>
-      {/* <IconButton
-        icon={Heart}
-        className="heart-favourite"
-        isFilled={isFavourite}
-        onClick={handleFavouriteClick}
-      /> */}
+      {[USER_ROLE.CUSTOMER].includes(user.role) && (
+        <IconButton
+          icon={Heart}
+          className="heart-favourite"
+          isFilled={isFavourite}
+          onClick={handleFavouriteClick}
+        />
+      )}
 
-      <IconButton
-        icon={Pencil}
-        className="heart-favourite"
-        isFilled={isFavourite}
-        onClick={handleEditPlate}
-      />
+      {[USER_ROLE.ADMIN].includes(user.role) && (
+        <IconButton
+          icon={Pencil}
+          className="heart-favourite"
+          isFilled={isFavourite}
+          onClick={handleEditPlate}
+        />
+      )}
 
       <img src={image} alt={name} />
 
