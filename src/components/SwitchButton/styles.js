@@ -28,7 +28,7 @@ export const Container = styled.div`
     background-color: ${({ theme }) => theme.COLORS.BACKGROUND_500};
     border-radius: 999px;
     animation: ${({ theme, $ison }) =>
-      $ison === "true"
+      $ison === true
         ? theme.ANIMATIONS.SLIDE_RIGHT
         : theme.ANIMATIONS.SLIDE_LEFT};
 

@@ -8,10 +8,10 @@ import { Routes } from "./routes"
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <UIProvider>
-      <AuthProvider>
+    <AuthProvider>
+      <UIProvider>
         <Routes />
-      </AuthProvider>
-    </UIProvider>
+      </UIProvider>
+    </AuthProvider>
   </React.StrictMode>
 )

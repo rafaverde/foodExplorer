@@ -8,7 +8,7 @@ export function SwitchButton({ onSwitchButton }) {
   const { isDarkTheme } = useUI()
 
   return (
-    <Container $ison={isDarkTheme.toString()}>
+    <Container $ison={isDarkTheme}>
       {isDarkTheme ? (
         <IconButton icon={Sun} onClick={onSwitchButton} />
       ) : (

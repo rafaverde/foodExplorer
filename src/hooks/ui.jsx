@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react"
+import { createContext, useContext, useEffect, useState } from "react"
 
 import { ThemeProvider } from "styled-components"
 import { darkTheme, lightTheme } from "../styles/theme"
@@ -7,17 +7,20 @@ import GlobalStyles from "../styles/global"
 export const UIContext = createContext({})
 
 function UIProvider({ children }) {
-  //Theme Mode manipulation
   const checkUserTheme = localStorage.getItem("@foodexplorer:theme")
 
-  const [isDarkTheme, setIsDarkTheme] = checkUserTheme
-    ? useState(checkUserTheme)
-    : useState(false)
+  //Theme Mode manipulation
+  const [isDarkTheme, setIsDarkTheme] = useState(
+    checkUserTheme.toLowerCase() === "true"
+  )
 
   function toggleThemeMode() {
     setIsDarkTheme((prevState) => !prevState)
-    localStorage.setItem("@foodexplorer:theme", isDarkTheme)
   }
+
+  useEffect(() => {
+    localStorage.setItem("@foodexplorer:theme", isDarkTheme)
+  }, [isDarkTheme])
 
   //Side Menu manipulation
   const [menuIsOpen, setMenuIsOpen] = useState(false)
@@ -34,6 +37,7 @@ function UIProvider({ children }) {
     <UIContext.Provider
       value={{
         isDarkTheme,
+        setIsDarkTheme,
         menuIsOpen,
         toggleSideMenu,
         toggleThemeMode,
@@ -42,6 +46,7 @@ function UIProvider({ children }) {
       }}
     >
       <ThemeProvider theme={!isDarkTheme ? darkTheme : lightTheme}>
+        {console.log(isDarkTheme)}
         <GlobalStyles />
         {children}
       </ThemeProvider>
