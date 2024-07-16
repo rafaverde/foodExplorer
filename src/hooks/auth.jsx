@@ -24,11 +24,17 @@ function AuthProvider({ children }) {
       } else {
         alert("Não foi possível fazer login. Tente novamente.")
       }
+
+      localStorage.removeItem("@foodexplorer:user")
+      await api.delete("/sessions/logout")
+
+      setData({})
     }
   }
 
   async function signOut() {
     localStorage.removeItem("@foodexplorer:user")
+    await api.delete("/sessions/logout")
 
     setData({})
   }
