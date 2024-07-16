@@ -290,19 +290,21 @@ export function EditPlate() {
                 onChange={(e) => setDescription(e.target.value)}
               />
             </Label>
-            <div className="save-button">
-              <Button
-                title="Salvar Alterações"
-                icon={Check}
-                onClick={handleUpdatePlate}
-              />
-            </div>
-            <div className="save-button">
-              <Button
-                title="Excluir Prato"
-                icon={Trash}
-                onClick={handleDeletePlate}
-              />
+            <div className="buttons">
+              <div className="save-button">
+                <Button
+                  title="Salvar Alterações"
+                  icon={Check}
+                  onClick={handleUpdatePlate}
+                />
+              </div>
+              <div className="save-button">
+                <Button
+                  title="Excluir Prato"
+                  icon={Trash}
+                  onClick={handleDeletePlate}
+                />
+              </div>
             </div>
           </Form>
         </Content>

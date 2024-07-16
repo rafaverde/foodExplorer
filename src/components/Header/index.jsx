@@ -46,10 +46,12 @@ export function Header({ onOpenMenu }) {
       <Menu onClick={() => toggleSideMenu()}>
         <List />
       </Menu>
-      <Brand>
-        <img src={isDarkTheme ? darkLogo : logo} />
-        {[USER_ROLE.ADMIN].includes(user.role) && <span>admin</span>}
-      </Brand>
+      <Link to="/">
+        <Brand>
+          <img src={isDarkTheme ? darkLogo : logo} />
+          {[USER_ROLE.ADMIN].includes(user.role) && <span>admin</span>}
+        </Brand>
+      </Link>
       <Search>
         <Input
           icon={MagnifyingGlass}
@@ -69,7 +71,9 @@ export function Header({ onOpenMenu }) {
             icon={PlusCircle}
             title="Novo Prato"
             className="order-button"
+            onClick={() => navigate("/new")}
           />
+
           <Link to="/new" className="add-plate">
             <PlusCircle />
             <IconButton icon={BowlSteam} />

@@ -74,13 +74,20 @@ export const Form = styled.form`
     }
   }
 
+  .buttons {
+    @media (min-width: ${DEVICE_BREAKPOINTS.MD}) {
+      display: flex;
+      justify-content: flex-end;
+      gap: 20px;
+    }
+  }
+
   .save-button {
     margin-top: 16px;
   }
 
   @media (min-width: ${DEVICE_BREAKPOINTS.MD}) {
     .save-button {
-      width: 100%;
       display: flex;
       justify-content: end;
     }
