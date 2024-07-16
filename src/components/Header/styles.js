@@ -63,6 +63,10 @@ export const Container = styled.div`
     &:hover {
       opacity: 0.85;
     }
+
+    @media (min-width: ${DEVICE_BREAKPOINTS.MD}) {
+      display: none;
+    }
   }
 `
 

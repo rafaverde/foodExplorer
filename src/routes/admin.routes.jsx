@@ -5,6 +5,7 @@ import { PlateDetail } from "../pages/PlateDetail"
 import { Profile } from "../pages/Profile"
 import { NewPlate } from "../pages/NewPlate"
 import { EditPlate } from "../pages/EditPlate"
+import { NotFound } from "../pages/NotFound"
 
 export function AdminRoutes() {
   return (
@@ -15,7 +16,7 @@ export function AdminRoutes() {
       <Route path="/new" element={<NewPlate />} />
       <Route path="/edit/:id" element={<EditPlate />} />
 
-      <Route path="*" element={<Navigate to="/" />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   )
 }

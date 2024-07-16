@@ -4,15 +4,19 @@ import { useState } from "react"
 import { Container, Form } from "./styles"
 import { EnvelopeSimple, Lock } from "@phosphor-icons/react"
 import logo from "../../assets/food-explorer-logo.svg"
+import darkLogo from "../../assets/food-explorer-dark-logo.svg"
 
 import { Input } from "../../components/Input"
 import { Button } from "../../components/Button"
 import { ButtonText } from "../../components/ButtonText"
 
 import { useAuth } from "../../hooks/auth"
+import { useUI } from "../../hooks/ui"
 
 export function SignIn() {
   const { signIn } = useAuth()
+  const { isDarkTheme } = useUI()
+
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
@@ -27,7 +31,7 @@ export function SignIn() {
 
   return (
     <Container>
-      <img src={logo} alt="Food Explorer" />
+      <img src={isDarkTheme ? darkLogo : logo} alt="Food Explorer" />
 
       <Form>
         <h2>Faça seu login</h2>
