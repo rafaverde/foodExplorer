@@ -18,9 +18,10 @@ export function PlateCard({ id, image, name, description, price }) {
   const { user } = useAuth()
   const [isFavourite, setIsFavourite] = useState(false)
   const [counterValue, setCounterValue] = useState(0)
-  const platePrice = parseFloat(price.replace(",", ".") * counterValue).toFixed(
-    2
-  )
+  const platePrice = [USER_ROLE.ADMIN].includes(user.role)
+    ? parseFloat(price.replace(",", ".")).toFixed(2)
+    : parseFloat(price.replace(",", ".") * counterValue).toFixed(2)
+
   const navigate = useNavigate()
 
   function handleDetails(id) {
@@ -72,9 +73,12 @@ export function PlateCard({ id, image, name, description, price }) {
         <span>R$ {platePrice.replace(".", ",")}</span>
       </Infos>
 
-      <Counter onCounterChange={handleCounterChange} />
-
-      <Button title="Adicionar" icon={PlusCircle} />
+      {[USER_ROLE.CUSTOMER].includes(user.role) && (
+        <>
+          <Counter onCounterChange={handleCounterChange} />
+          <Button title="Adicionar" icon={PlusCircle} />
+        </>
+      )}
     </Container>
   )
 }

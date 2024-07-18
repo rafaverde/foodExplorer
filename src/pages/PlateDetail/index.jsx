@@ -9,8 +9,7 @@ import {
   Infos,
   TagsSection,
 } from "./styles"
-import { CaretCircleLeft, PlusCircle } from "@phosphor-icons/react"
-import plateTemp from "../../assets/plates/plate-gambe.png"
+import { CaretCircleLeft, Pencil, PlusCircle } from "@phosphor-icons/react"
 
 import { Header } from "../../components/Header"
 import { Footer } from "../../components/Footer"
@@ -20,8 +19,12 @@ import { Counter } from "../../components/Counter"
 import { Button } from "../../components/Button"
 
 import { api } from "../../services/api"
+import { USER_ROLE } from "../../utils/roles"
+import { useAuth } from "../../hooks/auth"
 
 export function PlateDetail() {
+  const { user } = useAuth()
+
   const [plate, setPlate] = useState(null)
   const params = useParams()
 
@@ -42,7 +45,6 @@ export function PlateDetail() {
     async function fetchPlate() {
       const response = await api.get(`plates/${params.id}`)
       setPlate(response.data)
-      console.log(response.data)
     }
 
     fetchPlate()
@@ -76,14 +78,29 @@ export function PlateDetail() {
 
               <span>
                 R${" "}
-                {(parseFloat(plate.price.replace(",", ".")) * counterValue)
-                  .toFixed(2)
-                  .replace(".", ",")}
+                {[USER_ROLE.CUSTOMER].includes(user.role)
+                  ? (parseFloat(plate.price.replace(",", ".")) * counterValue)
+                      .toFixed(2)
+                      .replace(".", ",")
+                  : parseFloat(plate.price.replace(",", "."))
+                      .toFixed(2)
+                      .replace(".", ",")}
               </span>
 
               <ButtonsSection>
-                <Counter onCounterChange={handleCounterChange} />
-                <Button title="Adicionar" icon={PlusCircle} />
+                {[USER_ROLE.CUSTOMER].includes(user.role) && (
+                  <>
+                    <Counter onCounterChange={handleCounterChange} />
+                    <Button title="Adicionar" icon={PlusCircle} />
+                  </>
+                )}
+                {[USER_ROLE.ADMIN].includes(user.role) && (
+                  <Button
+                    title="Editar Prato"
+                    icon={Pencil}
+                    onClick={() => navigate(`/edit/${plate.id}`)}
+                  />
+                )}
               </ButtonsSection>
             </Infos>
           </Details>

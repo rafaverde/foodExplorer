@@ -35,7 +35,7 @@ export const Infos = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: 15px;
 
   > button {
     color: ${({ theme }) => theme.COLORS.TEXTS_300};
@@ -54,7 +54,8 @@ export const Infos = styled.div`
   }
 
   > span {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
+    margin: 5px;
     font-weight: 700;
 
     color: ${({ theme }) => theme.COLORS.ACCENT};

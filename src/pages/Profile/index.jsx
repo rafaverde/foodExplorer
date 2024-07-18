@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useNavigate, Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 import { Avatar, Container, Content, Form, Menu, Nav } from "./styles"
 import avatarPlaceHolder from "../../assets/avatar_placeholder.svg"
@@ -28,6 +28,7 @@ import { SwitchButton } from "../../components/SwitchButton"
 import { useUI } from "../../hooks/ui"
 import { useAuth } from "../../hooks/auth"
 import { api } from "../../services/api"
+import { USER_ROLE } from "../../utils/roles"
 
 export function Profile() {
   const { user, updateProfile } = useAuth()
@@ -151,11 +152,13 @@ export function Profile() {
           </Form>
 
           <Nav>
-            <IconButton
-              title="Novo Prato"
-              icon={BowlSteam}
-              onClick={() => handleNavButton("new")}
-            />
+            {[USER_ROLE.ADMIN].includes(user.role) && (
+              <IconButton
+                title="Novo Prato"
+                icon={BowlSteam}
+                onClick={() => handleNavButton("new")}
+              />
+            )}
             <IconButton title="Meus Pedidos" icon={Receipt} />
             <IconButton title="Meus Favoritos" icon={Heart} />
             <IconButton title="Sair" icon={SignOut} />

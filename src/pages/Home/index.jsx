@@ -14,14 +14,33 @@ import { Footer } from "../../components/Footer"
 
 import { api } from "../../services/api"
 import { useUI } from "../../hooks/ui"
+import { useAuth } from "../../hooks/auth"
 
 export function Home() {
   const { search } = useUI()
+  // const { user, updateUserProfileFavourites } = useAuth()
 
   const [categories, setCategories] = useState([])
   const [plates, setPlates] = useState([])
   const plateImageURL = `${api.defaults.baseURL}/files/plates/`
 
+  // const [userFavourites, setUserFavourites] = useState([])
+
+  // const updateFavourites = (newFavourite) => {
+  //   if (!userFavourites.includes(newFavourite)) {
+  //     setUserFavourites([...userFavourites, newFavourite])
+  //     setFavouritesInsert(userFavourites.toString())
+  //   } else {
+  //     setUserFavourites(
+  //       userFavourites.filter((element) => {
+  //         return element !== newFavourite
+  //       })
+  //     )
+  //     setFavouritesInsert(userFavourites.toString())
+  //   }
+  // }
+
+  //Fetch Plate Categories
   useEffect(() => {
     async function fetchCategories() {
       const response = await api.get("/categories")
@@ -32,6 +51,7 @@ export function Home() {
     fetchCategories()
   }, [])
 
+  //Fetch Plate
   useEffect(() => {
     async function fetchPlates() {
       const response = await api.get(
@@ -43,6 +63,27 @@ export function Home() {
 
     fetchPlates()
   }, [search])
+
+  // //Fetch Users Favourites
+  // useEffect(() => {
+  //   async function fetchFavourites() {
+  //     try {
+  //       const actualFavourites = await api.get(`/users/${user.id}`)
+
+  //       if (actualFavourites !== "") {
+  //         const actualFavouritesArray =
+  //           actualFavourites.data.favourites[0].favourites.split(",")
+  //         // console.log(actualFavouritesArray)
+  //         setUserFavourites(actualFavouritesArray)
+  //       }
+  //     } catch (error) {
+  //       console.log("Favoritos está NULL", error)
+  //     }
+  //   }
+
+  //   fetchFavourites()
+  // }, [])
+
   return (
     <Container>
       <Header />
@@ -65,6 +106,8 @@ export function Home() {
                           name={filteredPlate.name}
                           description={filteredPlate.description}
                           price={filteredPlate.price}
+                          // favourites={userFavourites}
+                          // updateFavourites={updateFavourites}
                         />
                       </SplideSlide>
                     ))}
