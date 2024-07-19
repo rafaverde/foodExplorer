@@ -45,6 +45,7 @@ export function Home() {
 
     fetchPlates()
   }, [search])
+
   return (
     <Container>
       <Header />
