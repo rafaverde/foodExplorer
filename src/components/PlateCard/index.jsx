@@ -1,12 +1,12 @@
 import { useNavigate } from "react-router-dom"
 
-import { Container, Infos } from "./styles"
+import { Container, Infos, FavouriteForm, HeartCheckBox } from "./styles"
 
 import { IconButton } from "../../components/IconButton"
 import { Button } from "../../components/Button"
 import { Counter } from "../../components/Counter"
 
-import { Heart, Pencil, PlusCircle } from "@phosphor-icons/react"
+import { Pencil, PlusCircle } from "@phosphor-icons/react"
 
 import { useState } from "react"
 import { ButtonText } from "../ButtonText"
@@ -31,9 +31,7 @@ export function PlateCard({ id, image, name, description, price }) {
     navigate(`/edit/${id}`)
   }
 
-  function handleFavouriteClick() {
-    setIsFavourite((prevState) => !prevState)
-  }
+  function handleFavouriteClick() {}
 
   const handleCounterChange = (newValue) => {
     setCounterValue(newValue)
@@ -42,21 +40,16 @@ export function PlateCard({ id, image, name, description, price }) {
   return (
     <Container>
       {[USER_ROLE.CUSTOMER, USER_ROLE.ADMIN].includes(user.role) && (
-        <div id="favourite_form">
-          <form>
-            <div className="checkbox-wrapper">
-              <input type="checkbox" id={`${id}${name}`} />
-              <label htmlFor={`${id}${name}`}>
-                {/* <IconButton
-                icon={Heart}
-                className="check-favourite"
-                isFilled={isFavourite}
-                onClick={handleFavouriteClick}
-              /> */}
-              </label>
-            </div>
-          </form>
-        </div>
+        <FavouriteForm>
+          <HeartCheckBox>
+            <input
+              type="checkbox"
+              id={`${id}${name}`}
+              onChange={(e) => setIsFavourite(e.target.checked)}
+            />
+            <label htmlFor={`${id}${name}`}></label>
+          </HeartCheckBox>
+        </FavouriteForm>
       )}
 
       {[USER_ROLE.ADMIN].includes(user.role) && (

@@ -46,7 +46,6 @@ function UIProvider({ children }) {
       }}
     >
       <ThemeProvider theme={!isDarkTheme ? darkTheme : lightTheme}>
-        {console.log(isDarkTheme)}
         <GlobalStyles />
         {children}
       </ThemeProvider>
