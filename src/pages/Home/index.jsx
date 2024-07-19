@@ -22,6 +22,7 @@ export function Home() {
   const [plates, setPlates] = useState([])
   const plateImageURL = `${api.defaults.baseURL}/files/plates/`
 
+  //Fetch Categories
   useEffect(() => {
     async function fetchCategories() {
       const response = await api.get("/categories")
@@ -32,6 +33,7 @@ export function Home() {
     fetchCategories()
   }, [])
 
+  // Fetch plates
   useEffect(() => {
     async function fetchPlates() {
       const response = await api.get(

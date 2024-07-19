@@ -41,19 +41,28 @@ export function PlateCard({ id, image, name, description, price }) {
 
   return (
     <Container>
-      {[USER_ROLE.CUSTOMER].includes(user.role) && (
-        <IconButton
-          icon={Heart}
-          className="heart-favourite"
-          isFilled={isFavourite}
-          onClick={handleFavouriteClick}
-        />
+      {[USER_ROLE.CUSTOMER, USER_ROLE.ADMIN].includes(user.role) && (
+        <div id="favourite_form">
+          <form>
+            <div className="checkbox-wrapper">
+              <input type="checkbox" id={`${id}${name}`} />
+              <label htmlFor={`${id}${name}`}>
+                {/* <IconButton
+                icon={Heart}
+                className="check-favourite"
+                isFilled={isFavourite}
+                onClick={handleFavouriteClick}
+              /> */}
+              </label>
+            </div>
+          </form>
+        </div>
       )}
 
       {[USER_ROLE.ADMIN].includes(user.role) && (
         <IconButton
           icon={Pencil}
-          className="heart-favourite"
+          className="edit-plate"
           isFilled={isFavourite}
           onClick={handleEditPlate}
         />
