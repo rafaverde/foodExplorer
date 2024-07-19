@@ -14,13 +14,17 @@ import { Footer } from "../../components/Footer"
 
 import { api } from "../../services/api"
 import { useUI } from "../../hooks/ui"
+import { useAuth } from "../../hooks/auth"
 
 export function Home() {
   const { search } = useUI()
+  const { user } = useAuth()
 
   const [categories, setCategories] = useState([])
   const [plates, setPlates] = useState([])
   const plateImageURL = `${api.defaults.baseURL}/files/plates/`
+
+  const [userFavourites, setUserFavourites] = useState([])
 
   //Fetch Categories
   useEffect(() => {
@@ -46,6 +50,25 @@ export function Home() {
     fetchPlates()
   }, [search])
 
+  //Fetch Users Favourites
+  useEffect(() => {
+    async function fetchFavourites() {
+      try {
+        const actualFavourites = await api.get(`/users/${user.id}`)
+
+        if (actualFavourites !== "") {
+          const actualFavouritesArray =
+            actualFavourites.data.favourites[0].favourites.split(",")
+          setUserFavourites(actualFavouritesArray)
+        }
+      } catch (error) {
+        console.log("Favoritos está NULL", error)
+      }
+    }
+
+    fetchFavourites()
+  }, [])
+
   return (
     <Container>
       <Header />
@@ -68,6 +91,7 @@ export function Home() {
                           name={filteredPlate.name}
                           description={filteredPlate.description}
                           price={filteredPlate.price}
+                          favourites={userFavourites}
                         />
                       </SplideSlide>
                     ))}

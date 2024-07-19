@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom"
+import { useState, useEffect } from "react"
 
 import { Container, Infos, FavouriteForm, HeartCheckBox } from "./styles"
 
@@ -8,13 +9,12 @@ import { Counter } from "../../components/Counter"
 
 import { Pencil, PlusCircle } from "@phosphor-icons/react"
 
-import { useState } from "react"
 import { ButtonText } from "../ButtonText"
 
 import { useAuth } from "../../hooks/auth"
 import { USER_ROLE } from "../../utils/roles"
 
-export function PlateCard({ id, image, name, description, price }) {
+export function PlateCard({ id, image, name, description, price, favourites }) {
   const { user } = useAuth()
   const [isFavourite, setIsFavourite] = useState(false)
   const [counterValue, setCounterValue] = useState(0)
@@ -37,6 +37,14 @@ export function PlateCard({ id, image, name, description, price }) {
     setCounterValue(newValue)
   }
 
+  useEffect(() => {
+    favourites.map((number) => {
+      if (number === String(id)) {
+        setIsFavourite(true)
+      }
+    })
+  }, [])
+
   return (
     <Container>
       {[USER_ROLE.CUSTOMER, USER_ROLE.ADMIN].includes(user.role) && (
@@ -45,7 +53,10 @@ export function PlateCard({ id, image, name, description, price }) {
             <input
               type="checkbox"
               id={`${id}${name}`}
-              onChange={(e) => setIsFavourite(e.target.checked)}
+              checked={isFavourite}
+              onChange={(e) => {
+                setIsFavourite(e.target.checked)
+              }}
             />
             <label htmlFor={`${id}${name}`}></label>
           </HeartCheckBox>
