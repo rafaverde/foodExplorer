@@ -10,8 +10,9 @@ export function CustomerRoutes() {
       <Route path="/" element={<Home />} />
       <Route path="/plate/:id" element={<PlateDetail />} />
       <Route path="/profile" element={<Profile />} />
+      <Route path="/favourites" element={<MyFavourites />} />
 
-      <Route path="*" element={<Navigate to="/" />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   )
 }

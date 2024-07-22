@@ -58,7 +58,11 @@ export function SideMenu({ onCloseMenu }) {
             <IconButton title="Minha Conta" icon={User} onClick={onCloseMenu} />
           </Link>
           <IconButton title="Meus Pedidos" icon={Receipt} />
-          <IconButton title="Meus Favoritos" icon={Heart} />
+          <IconButton
+            title="Meus Favoritos"
+            icon={Heart}
+            onClick={() => navigate("/favourites")}
+          />
           <IconButton title="Sair" icon={SignOut} onClick={handleSignOut} />
         </Nav>
       </div>

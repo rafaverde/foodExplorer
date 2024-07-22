@@ -82,7 +82,6 @@ function AuthProvider({ children }) {
         signIn,
         signOut,
         updateProfile,
-        updateUserFavourites,
         user: data.user,
       }}
     >

@@ -6,6 +6,7 @@ import { Profile } from "../pages/Profile"
 import { NewPlate } from "../pages/NewPlate"
 import { EditPlate } from "../pages/EditPlate"
 import { NotFound } from "../pages/NotFound"
+import { MyFavourites } from "../pages/MyFavourites"
 
 export function AdminRoutes() {
   return (
@@ -15,6 +16,7 @@ export function AdminRoutes() {
       <Route path="/profile" element={<Profile />} />
       <Route path="/new" element={<NewPlate />} />
       <Route path="/edit/:id" element={<EditPlate />} />
+      <Route path="/favourites" element={<MyFavourites />} />
 
       <Route path="*" element={<NotFound />} />
     </Routes>

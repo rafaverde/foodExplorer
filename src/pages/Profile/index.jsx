@@ -160,7 +160,11 @@ export function Profile() {
               />
             )}
             <IconButton title="Meus Pedidos" icon={Receipt} />
-            <IconButton title="Meus Favoritos" icon={Heart} />
+            <IconButton
+              title="Meus Favoritos"
+              icon={Heart}
+              onClick={() => handleNavButton("favourites")}
+            />
             <IconButton title="Sair" icon={SignOut} />
           </Nav>
         </Menu>
