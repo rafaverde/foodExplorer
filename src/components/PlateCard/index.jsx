@@ -12,6 +12,7 @@ import { Pencil, PlusCircle } from "@phosphor-icons/react"
 import { ButtonText } from "../ButtonText"
 
 import { useAuth } from "../../hooks/auth"
+import { api } from "../../services/api"
 import { USER_ROLE } from "../../utils/roles"
 
 export function PlateCard({ id, image, name, description, price, favourites }) {
@@ -50,7 +51,8 @@ export function PlateCard({ id, image, name, description, price, favourites }) {
 
     const userUpdated = { ...user, ...userUpdates }
 
-    await updateUserFavourites({ user: userUpdated })
+    await api.put("/users", userUpdated)
+    localStorage.setItem("@foodexplorer:user", JSON.stringify(userUpdated))
   }
 
   const handleCounterChange = (newValue) => {

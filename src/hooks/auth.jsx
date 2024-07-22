@@ -66,13 +66,6 @@ function AuthProvider({ children }) {
     }
   }
 
-  async function updateUserFavourites({ user }) {
-    await api.put("/users", user)
-    localStorage.setItem("@foodexplorer:user", JSON.stringify(user))
-
-    setData({ user })
-  }
-
   useEffect(() => {
     const user = localStorage.getItem("@foodexplorer:user")
 
