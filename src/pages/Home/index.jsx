@@ -18,29 +18,15 @@ import { useAuth } from "../../hooks/auth"
 
 export function Home() {
   const { search } = useUI()
-  // const { user, updateUserProfileFavourites } = useAuth()
+  const { user } = useAuth()
 
   const [categories, setCategories] = useState([])
   const [plates, setPlates] = useState([])
   const plateImageURL = `${api.defaults.baseURL}/files/plates/`
 
-  // const [userFavourites, setUserFavourites] = useState([])
+  const [userFavourites, setUserFavourites] = useState([])
 
-  // const updateFavourites = (newFavourite) => {
-  //   if (!userFavourites.includes(newFavourite)) {
-  //     setUserFavourites([...userFavourites, newFavourite])
-  //     setFavouritesInsert(userFavourites.toString())
-  //   } else {
-  //     setUserFavourites(
-  //       userFavourites.filter((element) => {
-  //         return element !== newFavourite
-  //       })
-  //     )
-  //     setFavouritesInsert(userFavourites.toString())
-  //   }
-  // }
-
-  //Fetch Plate Categories
+  //Fetch Categories
   useEffect(() => {
     async function fetchCategories() {
       const response = await api.get("/categories")
@@ -51,7 +37,7 @@ export function Home() {
     fetchCategories()
   }, [])
 
-  //Fetch Plate
+  // Fetch plates
   useEffect(() => {
     async function fetchPlates() {
       const response = await api.get(
@@ -64,25 +50,24 @@ export function Home() {
     fetchPlates()
   }, [search])
 
-  // //Fetch Users Favourites
-  // useEffect(() => {
-  //   async function fetchFavourites() {
-  //     try {
-  //       const actualFavourites = await api.get(`/users/${user.id}`)
+  //Fetch Users Favourites
+  useEffect(() => {
+    async function fetchFavourites() {
+      try {
+        const actualFavourites = await api.get(`/users/${user.id}`)
 
-  //       if (actualFavourites !== "") {
-  //         const actualFavouritesArray =
-  //           actualFavourites.data.favourites[0].favourites.split(",")
-  //         // console.log(actualFavouritesArray)
-  //         setUserFavourites(actualFavouritesArray)
-  //       }
-  //     } catch (error) {
-  //       console.log("Favoritos está NULL", error)
-  //     }
-  //   }
+        if (actualFavourites !== "") {
+          const actualFavouritesArray =
+            actualFavourites.data.favourites[0].favourites.split(",")
+          setUserFavourites(actualFavouritesArray)
+        }
+      } catch (error) {
+        console.log("Favoritos está vazio.")
+      }
+    }
 
-  //   fetchFavourites()
-  // }, [])
+    fetchFavourites()
+  }, [])
 
   return (
     <Container>
@@ -106,8 +91,7 @@ export function Home() {
                           name={filteredPlate.name}
                           description={filteredPlate.description}
                           price={filteredPlate.price}
-                          // favourites={userFavourites}
-                          // updateFavourites={updateFavourites}
+                          favourites={userFavourites}
                         />
                       </SplideSlide>
                     ))}

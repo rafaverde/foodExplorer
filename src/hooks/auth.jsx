@@ -66,6 +66,13 @@ function AuthProvider({ children }) {
     }
   }
 
+  async function updateUserFavourites({ user }) {
+    await api.put("/users", user)
+    localStorage.setItem("@foodexplorer:user", JSON.stringify(user))
+
+    setData({ user })
+  }
+
   useEffect(() => {
     const user = localStorage.getItem("@foodexplorer:user")
 
@@ -78,7 +85,13 @@ function AuthProvider({ children }) {
 
   return (
     <AuthContext.Provider
-      value={{ signIn, signOut, updateProfile, user: data.user }}
+      value={{
+        signIn,
+        signOut,
+        updateProfile,
+        updateUserFavourites,
+        user: data.user,
+      }}
     >
       {children}
     </AuthContext.Provider>

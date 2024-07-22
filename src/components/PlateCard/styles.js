@@ -1,5 +1,7 @@
 import styled from "styled-components"
 import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints"
+import heart from "../../assets/heart.svg"
+import heartFilledRed from "../../assets/heart-filled-red.svg"
 
 export const Container = styled.div`
   width: 100%;
@@ -16,17 +18,64 @@ export const Container = styled.div`
 
   background-color: ${({ theme }) => theme.COLORS.BACKGROUND_600};
 
-  .heart-favourite {
-    position: absolute;
-    top: 15px;
-    right: 15px;
+  > img {
+    max-width: 8.8rem;
+  }
+`
 
-    font-size: 1.6rem;
+export const FavouriteForm = styled.form`
+  position: absolute;
+  top: 15px;
+  right: 15px;
+
+  font-size: 1.6rem;
+  cursor: pointer;
+`
+
+export const HeartCheckBox = styled.div`
+  position: relative;
+
+  > label {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 0;
+  }
+
+  > input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30px;
+    height: 30px;
+    opacity: 0;
     cursor: pointer;
   }
 
-  > img {
-    max-width: 8.8rem;
+  > label::before {
+    content: "";
+    display: block;
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    background-image: url(${heart});
+    background-size: contain;
+  }
+
+  > input:checked + label::before {
+    background-image: url(${heartFilledRed});
+    background-size: contain;
+  }
+
+  .check-favourite {
+    position: absolute !important;
+    top: 0;
+    right: 0;
+
+    > svg {
+      width: 30px !important;
+      height: 30px !important;
+    }
   }
 `
 
