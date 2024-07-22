@@ -79,7 +79,7 @@ export const Menu = styled.button`
     font-size: 2.8rem;
   }
 
-  @media (min-width: ${DEVICE_BREAKPOINTS.LG}) {
+  @media (min-width: ${DEVICE_BREAKPOINTS.MD}) {
     display: none;
   }
 `

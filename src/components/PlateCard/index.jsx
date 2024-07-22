@@ -16,7 +16,7 @@ import { api } from "../../services/api"
 import { USER_ROLE } from "../../utils/roles"
 
 export function PlateCard({ id, image, name, description, price, favourites }) {
-  const { user, updateUserFavourites } = useAuth()
+  const { user } = useAuth()
   const [isFavourite, setIsFavourite] = useState(false)
 
   const [counterValue, setCounterValue] = useState(0)

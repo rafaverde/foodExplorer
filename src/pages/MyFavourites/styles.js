@@ -22,3 +22,11 @@ export const Content = styled.div`
   flex-direction: column;
   gap: 30px;
 `
+
+export const FavouriteList = styled.div`
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 20px;
+`

@@ -46,22 +46,33 @@ export function SideMenu({ onCloseMenu }) {
 
         <Nav>
           {[USER_ROLE.ADMIN].includes(user.role) && (
-            <Link to="/new">
-              <IconButton
-                title="Novo Prato"
-                icon={BowlSteam}
-                onClick={onCloseMenu}
-              />
-            </Link>
+            <IconButton
+              title="Novo Prato"
+              icon={BowlSteam}
+              onClick={() => {
+                navigate("/new")
+                onCloseMenu()
+              }}
+            />
           )}
-          <Link to="/profile">
-            <IconButton title="Minha Conta" icon={User} onClick={onCloseMenu} />
-          </Link>
+
+          <IconButton
+            title="Minha Conta"
+            icon={User}
+            onClick={() => {
+              navigate("/profile")
+              onCloseMenu()
+            }}
+          />
+
           <IconButton title="Meus Pedidos" icon={Receipt} />
           <IconButton
             title="Meus Favoritos"
             icon={Heart}
-            onClick={() => navigate("/favourites")}
+            onClick={() => {
+              navigate("/favourites")
+              onCloseMenu()
+            }}
           />
           <IconButton title="Sair" icon={SignOut} onClick={handleSignOut} />
         </Nav>
