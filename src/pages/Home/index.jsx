@@ -62,7 +62,7 @@ export function Home() {
           setUserFavourites(actualFavouritesArray)
         }
       } catch (error) {
-        console.log("Favoritos está NULL", error)
+        console.log("Favoritos está vazio.")
       }
     }
 

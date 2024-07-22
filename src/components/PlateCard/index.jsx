@@ -15,8 +15,9 @@ import { useAuth } from "../../hooks/auth"
 import { USER_ROLE } from "../../utils/roles"
 
 export function PlateCard({ id, image, name, description, price, favourites }) {
-  const { user } = useAuth()
+  const { user, updateUserFavourites } = useAuth()
   const [isFavourite, setIsFavourite] = useState(false)
+
   const [counterValue, setCounterValue] = useState(0)
   const platePrice = parseFloat(price.replace(",", ".") * counterValue).toFixed(
     2
@@ -31,7 +32,25 @@ export function PlateCard({ id, image, name, description, price, favourites }) {
     navigate(`/edit/${id}`)
   }
 
-  function handleFavouriteClick() {}
+  async function handleFavouriteClick() {
+    if (favourites.includes(String(id))) {
+      favourites.map((element, index) => {
+        if (element === String(id)) {
+          favourites.splice(index, 1)
+        }
+      })
+    } else {
+      favourites.push(String(id))
+    }
+
+    const userUpdates = {
+      favourites: String(favourites),
+    }
+
+    const userUpdated = { ...user, ...userUpdates }
+
+    await updateUserFavourites({ user: userUpdated })
+  }
 
   const handleCounterChange = (newValue) => {
     setCounterValue(newValue)
@@ -57,6 +76,7 @@ export function PlateCard({ id, image, name, description, price, favourites }) {
               onChange={(e) => {
                 setIsFavourite(e.target.checked)
               }}
+              onClick={handleFavouriteClick}
             />
             <label htmlFor={`${id}${name}`}></label>
           </HeartCheckBox>
