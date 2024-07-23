@@ -69,7 +69,7 @@ export function PlateCard({ id, image, name, description, price, favourites }) {
 
   return (
     <Container>
-      {[USER_ROLE.CUSTOMER, USER_ROLE.ADMIN].includes(user.role) && (
+      {[USER_ROLE.CUSTOMER].includes(user.role) && (
         <FavouriteForm>
           <HeartCheckBox>
             <input
@@ -85,7 +85,6 @@ export function PlateCard({ id, image, name, description, price, favourites }) {
           </HeartCheckBox>
         </FavouriteForm>
       )}
-
       {[USER_ROLE.ADMIN].includes(user.role) && (
         <IconButton
           icon={Pencil}

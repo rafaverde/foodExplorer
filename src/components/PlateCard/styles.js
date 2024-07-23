@@ -21,6 +21,12 @@ export const Container = styled.div`
   > img {
     max-width: 8.8rem;
   }
+
+  .edit-plate {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+  }
 `
 
 export const FavouriteForm = styled.form`
