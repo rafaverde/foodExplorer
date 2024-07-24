@@ -1,8 +1,10 @@
-import { Routes, Route, Navigate } from "react-router-dom"
+import { Routes, Route } from "react-router-dom"
 
 import { Home } from "../pages/Home"
 import { PlateDetail } from "../pages/PlateDetail"
 import { Profile } from "../pages/Profile"
+import { MyFavourites } from "../pages/MyFavourites"
+import { NotFound } from "../pages/NotFound"
 
 export function CustomerRoutes() {
   return (

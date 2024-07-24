@@ -5,8 +5,8 @@ import { PlateDetail } from "../pages/PlateDetail"
 import { Profile } from "../pages/Profile"
 import { NewPlate } from "../pages/NewPlate"
 import { EditPlate } from "../pages/EditPlate"
-import { NotFound } from "../pages/NotFound"
 import { MyFavourites } from "../pages/MyFavourites"
+import { NotFound } from "../pages/NotFound"
 
 export function AdminRoutes() {
   return (

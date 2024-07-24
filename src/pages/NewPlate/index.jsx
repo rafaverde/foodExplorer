@@ -237,7 +237,7 @@ export function NewPlate() {
           </Label>
           <div className="save-button">
             <Button
-              title="Salvar Alterações"
+              title="Salvar Prato"
               icon={Check}
               onClick={handleNewPlate}
             />
