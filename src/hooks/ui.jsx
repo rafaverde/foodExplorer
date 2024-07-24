@@ -32,6 +32,9 @@ function UIProvider({ children }) {
   //Search states
   const [search, setSearch] = useState("")
 
+  //Order states
+  const [orderItems, setOrderItems] = useState([])
+
   //Returning ui and theme providers
   return (
     <UIContext.Provider
@@ -43,6 +46,8 @@ function UIProvider({ children }) {
         toggleThemeMode,
         search,
         setSearch,
+        orderItems,
+        setOrderItems,
       }}
     >
       <ThemeProvider theme={!isDarkTheme ? darkTheme : lightTheme}>

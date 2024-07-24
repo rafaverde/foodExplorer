@@ -12,11 +12,13 @@ import { Pencil, PlusCircle } from "@phosphor-icons/react"
 import { ButtonText } from "../ButtonText"
 
 import { useAuth } from "../../hooks/auth"
+import { useUI } from "../../hooks/ui"
 import { api } from "../../services/api"
 import { USER_ROLE } from "../../utils/roles"
 
 export function PlateCard({ id, image, name, description, price, favourites }) {
   const { user } = useAuth()
+  const { orderItems, setOrderItems } = useUI()
   const [isFavourite, setIsFavourite] = useState(false)
 
   const [counterValue, setCounterValue] = useState(0)
@@ -57,6 +59,31 @@ export function PlateCard({ id, image, name, description, price, favourites }) {
 
   const handleCounterChange = (newValue) => {
     setCounterValue(newValue)
+  }
+
+  //Add item to order
+  const itemsInsert = {
+    id,
+    image,
+    name,
+    price: platePrice,
+    quantity: counterValue,
+  }
+
+  function handleAddPlate(plate) {
+    const index = orderItems.findIndex((existingItem) => {
+      return existingItem.id === plate.id
+    })
+
+    if (index !== -1) {
+      const newQuantity = (orderItems[index].quantity += plate.quantity)
+      const newPrice =
+        parseFloat(price.replace(",", ".")).toFixed(2) * newQuantity
+      orderItems[index].price = newPrice
+      orderItems[index].quantity = newQuantity
+    } else {
+      setOrderItems([...orderItems, plate])
+    }
   }
 
   useEffect(() => {
@@ -110,7 +137,11 @@ export function PlateCard({ id, image, name, description, price, favourites }) {
       {[USER_ROLE.CUSTOMER].includes(user.role) && (
         <>
           <Counter onCounterChange={handleCounterChange} />
-          <Button title="Adicionar" icon={PlusCircle} />
+          <Button
+            title="Adicionar"
+            icon={PlusCircle}
+            onClick={() => handleAddPlate(itemsInsert)}
+          />
         </>
       )}
     </Container>

@@ -1,9 +1,12 @@
 import { useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 
 import { Container, Content, FavouriteList } from "./styles"
+import { CaretCircleLeft } from "@phosphor-icons/react"
 
 import { Header } from "../../components/Header"
 import { Footer } from "../../components/Footer"
+import { ButtonText } from "../../components/ButtonText"
 import { CategorySection } from "../../components/CategorySection"
 import { useState } from "react"
 
@@ -20,6 +23,12 @@ export function MyFavourites() {
   const plateImageURL = `${api.defaults.baseURL}/files/plates/`
 
   const [userFavourites, setUserFavourites] = useState([])
+
+  //Navigation
+  const navigate = useNavigate()
+  function handleBackButton() {
+    navigate(-1)
+  }
 
   // Fetch plates
   useEffect(() => {
@@ -57,6 +66,12 @@ export function MyFavourites() {
     <Container>
       <Header />
       <Content>
+        <ButtonText
+          title="Voltar"
+          icon={CaretCircleLeft}
+          $isactive
+          onClick={handleBackButton}
+        />
         <CategorySection title="Meus favoritos" />
         <FavouriteList>
           {plates &&

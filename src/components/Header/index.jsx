@@ -27,7 +27,8 @@ import { api } from "../../services/api"
 import { USER_ROLE } from "../../utils/roles"
 
 export function Header({ onOpenMenu }) {
-  const { menuIsOpen, toggleSideMenu, isDarkTheme, setSearch } = useUI()
+  const { menuIsOpen, toggleSideMenu, isDarkTheme, setSearch, orderItems } =
+    useUI()
   const { signOut, user } = useAuth()
   const navigate = useNavigate()
 
@@ -61,7 +62,12 @@ export function Header({ onOpenMenu }) {
       </Search>
       {[USER_ROLE.CUSTOMER].includes(user.role) && (
         <>
-          <Button icon={Receipt} title="Pedidos (0)" className="order-button" />
+          <Button
+            icon={Receipt}
+            title={`Pedidos (${orderItems.length})`}
+            className="order-button"
+            onClick={() => navigate("/payment")}
+          />
           <Cart />
         </>
       )}
