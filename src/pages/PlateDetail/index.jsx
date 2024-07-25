@@ -21,9 +21,11 @@ import { Button } from "../../components/Button"
 import { api } from "../../services/api"
 import { USER_ROLE } from "../../utils/roles"
 import { useAuth } from "../../hooks/auth"
+import { useUI } from "../../hooks/ui"
 
 export function PlateDetail() {
   const { user } = useAuth()
+  const { orderItems, setOrderItems } = useUI()
 
   const [plate, setPlate] = useState(null)
   const params = useParams()
@@ -39,6 +41,39 @@ export function PlateDetail() {
 
   function handleBackButton() {
     navigate(-1)
+  }
+
+  //Add item to order
+  // const itemsInsert = {
+  //   id: plate.id,
+  //   image: plate.image,
+  //   name: plate.name,
+  //   price: parseFloat(plate.price.replace(",", ".")),
+  //   quantity: counterValue,
+  // }
+
+  function handleAddPlate() {
+    const itemsInsert = {
+      id: plate.id,
+      image: `${plateImageURL}${plate.image}`,
+      name: plate.name,
+      price: parseFloat(plate.price.replace(",", ".")),
+      quantity: counterValue,
+    }
+
+    const index = orderItems.findIndex((existingItem) => {
+      return existingItem.id === plate.id
+    })
+
+    if (index !== -1) {
+      const newQuantity = (orderItems[index].quantity += itemsInsert.quantity)
+      const newPrice =
+        parseFloat(plate.price.replace(",", ".")).toFixed(2) * newQuantity
+      orderItems[index].price = newPrice
+      orderItems[index].quantity = newQuantity
+    } else {
+      setOrderItems([...orderItems, itemsInsert])
+    }
   }
 
   useEffect(() => {
@@ -91,7 +126,11 @@ export function PlateDetail() {
                 {[USER_ROLE.CUSTOMER].includes(user.role) && (
                   <>
                     <Counter onCounterChange={handleCounterChange} />
-                    <Button title="Adicionar" icon={PlusCircle} />
+                    <Button
+                      title="Adicionar"
+                      icon={PlusCircle}
+                      onClick={handleAddPlate}
+                    />
                   </>
                 )}
                 {[USER_ROLE.ADMIN].includes(user.role) && (
