@@ -30,6 +30,24 @@ export const Content = styled.div`
   }
 `
 
+export const OrderWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  gap: 3rem;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+`
+
+export const OrderReview = styled.div`
+  min-width: calc(100vw - 6rem);
+  transition: all 1s;
+
+  &.inactive {
+    transform: translateX(-100vw);
+  }
+`
+
 export const OrderList = styled.ul`
   list-style: none;
   display: flex;
@@ -55,6 +73,11 @@ export const Total = styled.div`
   flex-direction: column;
   align-items: end;
   gap: 12px;
+  margin-top: 12px;
+
+  > button {
+    margin-top: 20px;
+  }
 `
 
 export const Message = styled.div`
@@ -67,5 +90,14 @@ export const Message = styled.div`
   > span {
     font-size: 1.2rem;
     text-align: center;
+  }
+`
+
+export const OrderPayment = styled.div`
+  min-width: calc(100vw - 6rem);
+  transition: all 1s;
+
+  &.active {
+    transform: translateX(calc(-100vw + 3rem));
   }
 `
