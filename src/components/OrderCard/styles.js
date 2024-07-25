@@ -26,14 +26,6 @@ export const Container = styled.div`
     transition: all 900ms;
   }
 
-  @media (min-width: ${DEVICE_BREAKPOINTS.MD}) {
-    width: 48%;
-  }
-
-  @media (min-width: ${DEVICE_BREAKPOINTS.XL}) {
-    width: 32%;
-  }
-
   > img {
     max-width: 5rem;
   }

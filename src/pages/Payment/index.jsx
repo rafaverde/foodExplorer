@@ -38,6 +38,12 @@ export function Payment() {
   const { orderItems } = useUI()
   const { user } = useAuth()
 
+  //Navigation
+  const navigate = useNavigate()
+  function handleBackButton() {
+    navigate(-1)
+  }
+
   //Interface Control
   const [toggleReview, setToggleReview] = useState(true)
   function handleToggleReview() {
@@ -54,10 +60,13 @@ export function Payment() {
     .map((item) => item.price)
     .reduce((accumulator, currentValue) => accumulator + currentValue, 0)
 
-  //Navigation
-  const navigate = useNavigate()
-  function handleBackButton() {
-    navigate(-1)
+  //Handle Payment and create order
+  function handlePayment() {
+    if (orderItems.length === 0) {
+      alert(
+        "Seu pedido está vazio! :( Insira itens do nosso cardápio e tente novamente."
+      )
+    }
   }
 
   return (
@@ -194,7 +203,7 @@ export function Payment() {
                   </form>
                 </CardTab>
 
-                <Button title="Simular pagamento" />
+                <Button title="Simular pagamento" onClick={handlePayment} />
               </TabOutput>
             </PaymentDialog>
             <Button

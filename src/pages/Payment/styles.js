@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints"
 
 export const Container = styled.div`
   display: grid;
@@ -47,6 +48,10 @@ export const OrderReview = styled.div`
   &.inactive {
     transform: translateX(-100vw);
   }
+
+  @media (min-width: ${DEVICE_BREAKPOINTS.MD}) {
+    min-width: calc(50% - 1.5rem);
+  }
 `
 
 export const OrderList = styled.ul`
@@ -78,6 +83,10 @@ export const Total = styled.div`
 
   > button {
     margin-top: 20px;
+
+    @media (min-width: ${DEVICE_BREAKPOINTS.MD}) {
+      display: none;
+    }
   }
 `
 
@@ -102,6 +111,14 @@ export const OrderPayment = styled.div`
   &.active {
     transform: translateX(calc(-100vw + 3rem));
     height: auto;
+  }
+
+  @media (min-width: ${DEVICE_BREAKPOINTS.MD}) {
+    min-width: calc(50% - 1.5rem);
+
+    > button {
+      display: none;
+    }
   }
 `
 
