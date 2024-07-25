@@ -66,7 +66,7 @@ export function PlateCard({ id, image, name, description, price, favourites }) {
     id,
     image,
     name,
-    price: platePrice,
+    price: parseFloat(parseFloat(platePrice).toFixed(2)),
     quantity: counterValue,
   }
 

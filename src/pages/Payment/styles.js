@@ -20,6 +20,14 @@ export const Content = styled.div`
   display: flex;
   flex-direction: column;
   gap: 30px;
+
+  > .total {
+    text-align: right;
+    > h3 > span {
+      font-weight: 300;
+      text-align: right;
+    }
+  }
 `
 
 export const OrderList = styled.ul`
@@ -40,6 +48,13 @@ export const OrderList = styled.ul`
       opacity: 0;
     }
   }
+`
+
+export const Total = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  gap: 12px;
 `
 
 export const Message = styled.div`
