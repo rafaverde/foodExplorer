@@ -38,6 +38,17 @@ export const OrderWrapper = styled.div`
 
   overflow-x: hidden;
   overflow-y: auto;
+
+  &.active {
+    opacity: 1;
+    transition: opacity 1s;
+  }
+
+  &.inactive {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
 `
 
 //Order Review
@@ -228,5 +239,49 @@ export const CardTab = styled.div`
     opacity: 0;
     width: 0;
     height: 0;
+  }
+`
+
+//Payment
+export const PaymentWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+  opacity: 0;
+
+  &.active {
+    opacity: 1;
+    transition: opacity 1s;
+    height: 100%;
+  }
+
+  &.inactive {
+    width: 0;
+    height: 0;
+  }
+`
+
+export const PaymentFlow = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+
+  font-size: 1.5rem;
+  text-align: center;
+
+  .active {
+    opacity: 1;
+    transition: all 1s;
+  }
+
+  .inactive {
+    opacity: 0;
+    width: 0;
   }
 `

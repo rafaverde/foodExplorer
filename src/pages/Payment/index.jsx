@@ -14,9 +14,14 @@ import {
   TabOutput,
   PixTab,
   CardTab,
+  PaymentFlow,
+  PaymentWrapper,
 } from "./styles"
 import {
+  BowlSteam,
   CaretCircleLeft,
+  CheckCircle,
+  Clock,
   CreditCard,
   PixLogo,
   SmileySad,
@@ -28,14 +33,15 @@ import { ButtonText } from "../../components/ButtonText"
 import { CategorySection } from "../../components/CategorySection"
 import { OrderCard } from "../../components/OrderCard"
 import { Button } from "../../components/Button"
+import { Input } from "../../components/Input"
 
 import { useUI } from "../../hooks/ui"
 import { useAuth } from "../../hooks/auth"
 import { useState } from "react"
-import { Input } from "../../components/Input"
+import { api } from "../../services/api"
 
 export function Payment() {
-  const { orderItems } = useUI()
+  const { orderItems, setOrderItems } = useUI()
   const { user } = useAuth()
 
   //Navigation
@@ -60,13 +66,86 @@ export function Payment() {
     .map((item) => item.price)
     .reduce((accumulator, currentValue) => accumulator + currentValue, 0)
 
-  //Handle Payment and create order
+  //Handle Payment
+  const [toggleOrderPayment, setToggleOrderPayment] = useState("review")
+  const [toggleFlowIcon, setFlowIconFlow] = useState("processing")
+
+  //Handle Orders
+  async function createOrder(items) {
+    try {
+      await api.post("/orders", items)
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.data.message)
+      } else {
+        alert("Não foi possível criar o pedido. Tente novamente mais tarde.")
+        console.log(error)
+      }
+    }
+  }
+
+  async function updateOrder(status) {
+    const orders = await api.get("/orders")
+
+    const lastOrder = orders.data.orders[0].id
+
+    try {
+      await api.put(`/orders/${String(lastOrder)}`, status)
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.data.message)
+      } else {
+        alert(
+          "Não foi possível atualizar o status o pedido. Tente novamente mais tarde."
+        )
+        console.log(error)
+      }
+    }
+  }
+
   function handlePayment() {
+    const paymentMessage = document.getElementById("paymentMessage")
+
     if (orderItems.length === 0) {
-      alert(
+      return alert(
         "Seu pedido está vazio! :( Insira itens do nosso cardápio e tente novamente."
       )
     }
+
+    const orderItemsArray = orderItems.map(
+      (item) => `${item.quantity}x ${item.name} R$ ${item.price.toFixed(2)}`
+    )
+
+    const orderItemsInsert = {
+      items: orderItemsArray,
+    }
+    createOrder(orderItemsInsert).then(() => {
+      setToggleOrderPayment("payment")
+
+      setTimeout(() => {
+        setFlowIconFlow("aproved")
+        paymentMessage.innerHTML = "Pagamento aprovado!"
+        const status = {
+          payment_status: "Pagamento aprovado",
+        }
+
+        updateOrder(status).then(() => {
+          const status = {
+            order_status: "Em produção",
+          }
+          updateOrder(status).then(() => {
+            setFlowIconFlow("done")
+            paymentMessage.innerHTML =
+              "Pedido em preparo, em breve chegará em sua casa!"
+            setOrderItems([])
+
+            setTimeout(() => {
+              navigate("/")
+            }, 3000)
+          })
+        })
+      }, 2000)
+    })
   }
 
   return (
@@ -79,7 +158,9 @@ export function Payment() {
           $isactive
           onClick={handleBackButton}
         />
-        <OrderWrapper>
+        <OrderWrapper
+          className={toggleOrderPayment === "review" ? "active" : "inactive"}
+        >
           <OrderReview className={toggleReview ? "active" : "inactive"}>
             <CategorySection title="Revise seu pedido" />
             <OrderList>
@@ -203,7 +284,7 @@ export function Payment() {
                   </form>
                 </CardTab>
 
-                <Button title="Simular pagamento" onClick={handlePayment} />
+                <Button title="Efetuar pedido" onClick={handlePayment} />
               </TabOutput>
             </PaymentDialog>
             <Button
@@ -213,6 +294,30 @@ export function Payment() {
             />
           </OrderPayment>
         </OrderWrapper>
+        <PaymentWrapper
+          className={toggleOrderPayment === "payment" ? "active" : "inactive"}
+        >
+          <PaymentFlow>
+            <div id="paymentIcon">
+              <Clock
+                size={100}
+                className={
+                  toggleFlowIcon === "processing" ? "active" : "inactive"
+                }
+              />
+              <CheckCircle
+                size={100}
+                color="lightgreen"
+                className={toggleFlowIcon === "aproved" ? "active" : "inactive"}
+              />
+              <BowlSteam
+                size={100}
+                className={toggleFlowIcon === "done" ? "active" : "inactive"}
+              />
+            </div>
+            <span id="paymentMessage">O Pagamento está sendo processado.</span>
+          </PaymentFlow>
+        </PaymentWrapper>
       </Content>
       <Footer />
     </Container>
