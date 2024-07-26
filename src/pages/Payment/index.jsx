@@ -119,9 +119,9 @@ export function Payment() {
     const orderItemsInsert = {
       items: orderItemsArray,
     }
-    createOrder(orderItemsInsert).then(() => {
-      setToggleOrderPayment("payment")
+    setToggleOrderPayment("payment")
 
+    createOrder(orderItemsInsert).then(() => {
       setTimeout(() => {
         setFlowIconFlow("aproved")
         paymentMessage.innerHTML = "Pagamento aprovado!"

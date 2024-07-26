@@ -159,7 +159,11 @@ export function Profile() {
                 onClick={() => handleNavButton("new")}
               />
             )}
-            <IconButton title="Meus Pedidos" icon={Receipt} />
+            <IconButton
+              title="Meus Pedidos"
+              icon={Receipt}
+              onClick={() => handleNavButton("orders")}
+            />
             <IconButton
               title="Meus Favoritos"
               icon={Heart}

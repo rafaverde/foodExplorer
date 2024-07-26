@@ -65,7 +65,14 @@ export function SideMenu({ onCloseMenu }) {
             }}
           />
 
-          <IconButton title="Meus Pedidos" icon={Receipt} />
+          <IconButton
+            title="Meus Pedidos"
+            icon={Receipt}
+            onClick={() => {
+              navigate("/orders")
+              onCloseMenu()
+            }}
+          />
           <IconButton
             title="Meus Favoritos"
             icon={Heart}
