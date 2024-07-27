@@ -16,8 +16,6 @@ import { ButtonText } from "../../components/ButtonText"
 import { CategorySection } from "../../components/CategorySection"
 import { SelectInput } from "../../components/SelectInput"
 
-import { useUI } from "../../hooks/ui"
-
 import { api } from "../../services/api"
 import { useAuth } from "../../hooks/auth"
 import { USER_ROLE } from "../../utils/roles"
@@ -26,35 +24,29 @@ export function MyOrders() {
   const { user } = useAuth()
 
   const [orders, setOrders] = useState([])
+  const [iconUpdate, setIconUpdate] = useState(false)
 
   //Status Options
-  const customOption = ({ innerProps, label, value }) => (
-    <div {...innerProps}>
-      <Circle
-        size={15}
-        weight="fill"
-        className={
-          label === "Aguardando confirmação"
-            ? "pending"
-            : label === "Em produção"
-            ? "making"
-            : "done"
-        }
-      />
-      {label}
-    </div>
-  )
-
   const selectOptions = [
-    { value: "pending", label: "Aguardando confirmação" },
-    { value: "making", label: "Em produção" },
-    { value: "done", label: "Pedido Entregue" },
+    { value: "Aguardando confirmação", label: "Aguardando confirmação" },
+    { value: "Em produção", label: "Em produção" },
+    { value: "Pedido Entregue", label: "Pedido Entregue" },
   ]
 
   //Navigation
   const navigate = useNavigate()
   function handleBackButton() {
     navigate(-1)
+  }
+
+  //Order Update
+  async function handleOrderUpdate(id, status) {
+    const newStatus = {
+      order_status: status,
+    }
+
+    await api.put(`/orders/${id}`, newStatus)
+    setIconUpdate((prevState) => !prevState)
   }
 
   //Fetch Orders
@@ -66,7 +58,7 @@ export function MyOrders() {
     }
 
     fetchOrders()
-  }, [])
+  }, [iconUpdate])
 
   return (
     <Container>
@@ -78,7 +70,13 @@ export function MyOrders() {
           $isactive
           onClick={handleBackButton}
         />
-        <CategorySection title="Meus pedidos" />
+        <CategorySection
+          title={
+            [USER_ROLE.CUSTOMER].includes(user.role)
+              ? "Meus pedidos"
+              : "Pedidos na fila"
+          }
+        />
         {orders ? (
           <OrderTable>
             <TableLine
@@ -97,6 +95,7 @@ export function MyOrders() {
             {orders
               ? orders.map((order) => (
                   <TableLine
+                    key={order.id}
                     className={
                       [USER_ROLE.ADMIN].includes(user.role) ? "admin" : ""
                     }
@@ -118,9 +117,24 @@ export function MyOrders() {
                       </TableColumn>
                     ) : (
                       <TableColumn style={{ gridArea: "status" }}>
+                        <Circle
+                          size={15}
+                          weight="fill"
+                          className={
+                            order.order_status === "Aguardando confirmação"
+                              ? "pending"
+                              : order.order_status === "Em produção"
+                              ? "making"
+                              : "done"
+                          }
+                        />
                         <SelectInput
                           options={selectOptions}
-                          // components={{ Option: customOption }}
+                          defaultValue={{
+                            label: order.order_status,
+                            value: order.order_status,
+                          }}
+                          onChange={(e) => handleOrderUpdate(order.id, e.label)}
                         />
                       </TableColumn>
                     )}
@@ -129,7 +143,7 @@ export function MyOrders() {
                     </TableColumn>
                     {[USER_ROLE.ADMIN].includes(user.role) ? (
                       <TableColumn style={{ gridArea: "user" }}>
-                        {user.name}
+                        {order.user_id}
                       </TableColumn>
                     ) : null}
                     <TableColumn style={{ gridArea: "description" }}>

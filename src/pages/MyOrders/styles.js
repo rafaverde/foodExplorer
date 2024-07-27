@@ -70,7 +70,7 @@ export const TableLine = styled.li`
     border-bottom: 1px solid ${({ theme }) => theme.COLORS.BACKGROUND_500};
 
     &.admin {
-      grid-template-columns: 2fr 1fr 2fr 4fr 1fr;
+      grid-template-columns: 2fr 1fr 1fr 6fr 1fr;
       grid-template-areas: "status id user description date";
     }
 
@@ -110,7 +110,7 @@ export const TableColumn = styled.div`
     }
 
     &.done {
-      color: ${({ theme }) => theme.COLORS.YELLOW};
+      color: ${({ theme }) => theme.COLORS.MINT_GREEN};
     }
   }
 `

@@ -66,7 +66,9 @@ export function SideMenu({ onCloseMenu }) {
           />
 
           <IconButton
-            title="Meus Pedidos"
+            title={
+              [USER_ROLE.ADMIN].includes(user.role) ? "Pedidos" : "Meus Pedidos"
+            }
             icon={Receipt}
             onClick={() => {
               navigate("/orders")

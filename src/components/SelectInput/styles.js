@@ -11,7 +11,7 @@ export const Container = styled(Select)`
     border: none;
     border-radius: 10px;
     color: ${({ theme }) => theme.COLORS.TEXTS_300};
-    background-color: ${({ theme }) => theme.COLORS.BACKGROUND_500};
+    background-color: ${({ theme }) => theme.COLORS.BACKGROUND_700};
   }
 
   .Select__indicator-separator {
@@ -37,7 +37,7 @@ export const Container = styled(Select)`
   }
 
   .Select__menu {
-    background-color: ${({ theme }) => theme.COLORS.BACKGROUND_500};
+    background-color: ${({ theme }) => theme.COLORS.BACKGROUND_600};
   }
 
   .Select__option {
@@ -48,7 +48,7 @@ export const Container = styled(Select)`
     text-transform: capitalize;
 
     border-bottom: 1px solid ${({ theme }) => theme.COLORS.BACKGROUND_400};
-    background-color: ${({ theme }) => theme.COLORS.BACKGROUND_500};
+    background-color: ${({ theme }) => theme.COLORS.BACKGROUND_600};
 
     &:last-child {
       border: none;
