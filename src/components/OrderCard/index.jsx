@@ -1,30 +1,42 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 
-import { Trash } from "@phosphor-icons/react"
+import { Minus, Plus, Trash } from "@phosphor-icons/react"
 
-import { Container, Infos } from "./styles"
+import { Container, Controls, Infos } from "./styles"
 
 import { IconButton } from "../IconButton"
 
 import { useUI } from "../../hooks/ui"
 
-export function OrderCard({ id, image, quantity, name, price }) {
-  const { setOrderItems } = useUI()
+export function OrderCard({
+  id,
+  image,
+  quantity,
+  name,
+  price,
+  addItem,
+  removeItem,
+}) {
+  const { orderItems, setOrderItems } = useUI()
   const [isActive, setIsActive] = useState(true)
 
-  const platePrice = parseFloat(price).toFixed(2)
+  const [platePrice, setPlatePrice] = useState(parseFloat(price).toFixed(2))
 
   function handleRemoveOrderItem(toRemove) {
     setIsActive(false)
     setTimeout(
       () =>
         setOrderItems((prevState) =>
-          prevState.filter((item, index) => item.id !== toRemove)
+          prevState.filter((item) => item.id !== toRemove)
         ),
       1100
     )
   }
+
+  useEffect(() => {
+    setPlatePrice(parseFloat(price).toFixed(2))
+  }, [orderItems])
 
   return (
     <Container className={isActive ? "" : "inactive"}>
@@ -35,7 +47,15 @@ export function OrderCard({ id, image, quantity, name, price }) {
         <h3>{name}</h3>
         <span>R$ {platePrice.replace(".", ",")}</span>
       </Infos>
-      <IconButton icon={Trash} onClick={() => handleRemoveOrderItem(id)} />
+      <Controls>
+        <IconButton icon={Plus} onClick={addItem} />
+        <IconButton
+          icon={Trash}
+          className="trash"
+          onClick={() => handleRemoveOrderItem(id)}
+        />
+        <IconButton icon={Minus} onClick={removeItem} />
+      </Controls>
     </Container>
   )
 }

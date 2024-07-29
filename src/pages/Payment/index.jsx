@@ -37,7 +37,7 @@ import { Input } from "../../components/Input"
 
 import { useUI } from "../../hooks/ui"
 import { useAuth } from "../../hooks/auth"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { api } from "../../services/api"
 
 export function Payment() {
@@ -148,6 +148,51 @@ export function Payment() {
     })
   }
 
+  function handleAddOrderItem(id) {
+    const itemUpdated = orderItems.find((item) => {
+      if (item.id === id) {
+        const itemPrice = item.price / item.quantity
+        item.quantity += 1
+        item.price += itemPrice
+
+        return item
+      }
+    })
+
+    const index = orderItems.findIndex((item) => item.id === id)
+    const orderUpdated = orderItems
+    if (index !== -1) {
+      orderUpdated[index] = itemUpdated
+    }
+
+    setOrderItems(orderUpdated)
+    setOrderItems([...orderItems])
+  }
+
+  function handleRemoveOrderItem(id) {
+    const itemUpdated = orderItems.find((item) => {
+      if (item.id === id) {
+        if (item.quantity > 1) {
+          const itemPrice = item.price / item.quantity
+          item.quantity -= 1
+          item.price -= itemPrice
+          return item
+        } else {
+          return item
+        }
+      }
+    })
+
+    const index = orderItems.findIndex((item) => item.id === id)
+    const orderUpdated = orderItems
+    if (index !== -1) {
+      orderUpdated[index] = itemUpdated
+    }
+
+    setOrderItems(orderUpdated)
+    setOrderItems([...orderItems])
+  }
+
   return (
     <Container>
       <Header />
@@ -173,6 +218,8 @@ export function Payment() {
                         quantity={item.quantity}
                         name={item.name}
                         price={item.price}
+                        addItem={() => handleAddOrderItem(item.id)}
+                        removeItem={() => handleRemoveOrderItem(item.id)}
                       />
                     </li>
                   ))
