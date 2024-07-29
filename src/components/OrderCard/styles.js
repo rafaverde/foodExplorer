@@ -46,6 +46,7 @@ export const Controls = styled.div`
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  gap: 5px;
 
   > button {
     width: 28px;

@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
 
 import { Minus, Plus, Trash } from "@phosphor-icons/react"
 
@@ -20,6 +19,7 @@ export function OrderCard({
 }) {
   const { orderItems, setOrderItems } = useUI()
   const [isActive, setIsActive] = useState(true)
+  const [disabledButton, setDisabledButton] = useState(false)
 
   const [platePrice, setPlatePrice] = useState(parseFloat(price).toFixed(2))
 
@@ -36,6 +36,11 @@ export function OrderCard({
 
   useEffect(() => {
     setPlatePrice(parseFloat(price).toFixed(2))
+    if (quantity === 1) {
+      setDisabledButton(true)
+    } else {
+      setDisabledButton(false)
+    }
   }, [orderItems])
 
   return (
@@ -54,7 +59,11 @@ export function OrderCard({
           className="trash"
           onClick={() => handleRemoveOrderItem(id)}
         />
-        <IconButton icon={Minus} onClick={removeItem} />
+        <IconButton
+          icon={Minus}
+          onClick={removeItem}
+          disabled={disabledButton}
+        />
       </Controls>
     </Container>
   )
