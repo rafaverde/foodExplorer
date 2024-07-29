@@ -17,6 +17,12 @@ export const Container = styled.div`
 
   background-color: ${({ theme }) => theme.COLORS.BACKGROUND_600};
 
+  &.inactive {
+    opacity: 0;
+    transform: translateX(-50vh);
+    transition: all 1s;
+  }
+
   @media (min-width: ${DEVICE_BREAKPOINTS.MD}) {
     width: 48%;
   }
@@ -49,5 +55,18 @@ export const Infos = styled.div`
     color: ${({ theme }) => theme.COLORS.TEXTS_300};
     font-size: 1.2rem;
     font-weight: 700;
+  }
+`
+
+export const Message = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+
+  > span {
+    font-size: 1.2rem;
+    text-align: center;
   }
 `

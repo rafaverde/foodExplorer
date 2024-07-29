@@ -1,12 +1,12 @@
 import { useNavigate } from "react-router-dom"
 import { useState, useEffect } from "react"
 
-import { Container, Infos } from "./styles"
+import { Container, Infos, Message } from "./styles"
 
 import { IconButton } from "../IconButton"
 import { ButtonText } from "../ButtonText"
 
-import { Trash } from "@phosphor-icons/react"
+import { Trash, HeartBreak } from "@phosphor-icons/react"
 
 import { useAuth } from "../../hooks/auth"
 import { api } from "../../services/api"
@@ -17,31 +17,32 @@ export function FavouriteCard({ id, image, name, favourites }) {
   const navigate = useNavigate()
 
   const [isFavourite, setIsFavourite] = useState(true)
+  const [isActive, setIsActive] = useState(true)
 
   function handleDetails(id) {
     navigate(`/plate/${id}`)
   }
 
-  async function handleFavouriteClick() {
-    if (favourites.includes(String(id))) {
-      favourites.map((element, index) => {
-        if (element === String(id)) {
-          favourites.splice(index, 1)
-        }
-      })
-    } else {
-      favourites.push(String(id))
-    }
+  async function handleRemoveFavourite() {
+    setIsActive(false)
+    setTimeout(() => {
+      if (favourites.includes(String(id))) {
+        favourites.map((element, index) => {
+          if (element === String(id)) {
+            favourites.splice(index, 1)
+          }
+        })
+      }
+      const userUpdates = {
+        favourites: String(favourites),
+      }
 
-    const userUpdates = {
-      favourites: String(favourites),
-    }
+      const userUpdated = { ...user, ...userUpdates }
 
-    const userUpdated = { ...user, ...userUpdates }
-
-    await api.put("/users", userUpdated)
-    localStorage.setItem("@foodexplorer:user", JSON.stringify(userUpdated))
-    setIsFavourite(false)
+      api.put("/users", userUpdated)
+      localStorage.setItem("@foodexplorer:user", JSON.stringify(userUpdated))
+      setIsFavourite(false)
+    }, 1000)
   }
 
   useEffect(() => {
@@ -52,19 +53,37 @@ export function FavouriteCard({ id, image, name, favourites }) {
     })
   }, [])
 
-  return (
-    <Container $isfavourite={isFavourite}>
-      <img src={image} alt={name} />
+  console.log(favourites.length)
 
-      <Infos>
+  if (favourites.length > 1 || favourites.length === 0) {
+    return (
+      <Container
+        $isfavourite={isFavourite}
+        className={isActive ? "active" : "inactive"}
+      >
+        <img src={image} alt={name} />
+
+        <Infos>
+          <ButtonText
+            title={name}
+            onClick={() => {
+              handleDetails(id)
+            }}
+          />
+        </Infos>
+        <IconButton icon={Trash} onClick={handleRemoveFavourite} />
+      </Container>
+    )
+  } else {
+    return (
+      <Message>
+        <HeartBreak size={100} />
+        <span>Você não tem nenhum favorito ainda!</span>
         <ButtonText
-          title={name}
-          onClick={() => {
-            handleDetails(id)
-          }}
+          title="Navegue em nosso Cardápio e favorite suas delícias preferidas."
+          onClick={() => navigate("/")}
         />
-      </Infos>
-      <IconButton icon={Trash} onClick={handleFavouriteClick} />
-    </Container>
-  )
+      </Message>
+    )
+  }
 }

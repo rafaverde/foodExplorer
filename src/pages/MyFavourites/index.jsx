@@ -73,19 +73,20 @@ export function MyFavourites() {
           onClick={handleBackButton}
         />
         <CategorySection title="Meus favoritos" />
-        <FavouriteList>
-          {plates &&
-            plates
-              .filter((plate) => userFavourites.includes(String(plate.id)))
-              .map((filteredFavourite) => (
-                <FavouriteCard
-                  key={filteredFavourite.id}
-                  id={filteredFavourite.id}
-                  image={`${plateImageURL}${filteredFavourite.image}`}
-                  name={filteredFavourite.name}
-                  favourites={userFavourites}
-                />
-              ))}
+        <FavouriteList id="favouriteList">
+          {plates
+            ? plates
+                .filter((plate) => userFavourites.includes(String(plate.id)))
+                .map((filteredFavourite) => (
+                  <FavouriteCard
+                    key={filteredFavourite.id}
+                    id={filteredFavourite.id}
+                    image={`${plateImageURL}${filteredFavourite.image}`}
+                    name={filteredFavourite.name}
+                    favourites={userFavourites}
+                  />
+                ))
+            : null}
         </FavouriteList>
       </Content>
       <Footer />
