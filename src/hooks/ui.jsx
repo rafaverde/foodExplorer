@@ -33,7 +33,13 @@ function UIProvider({ children }) {
   const [search, setSearch] = useState("")
 
   //Order states
-  const [orderItems, setOrderItems] = useState([])
+  const order = localStorage.getItem("foodexplorer:order")
+
+  const [orderItems, setOrderItems] = useState(JSON.parse(order))
+
+  useEffect(() => {
+    localStorage.setItem("foodexplorer:order", JSON.stringify(orderItems))
+  }, [orderItems])
 
   //Returning ui and theme providers
   return (

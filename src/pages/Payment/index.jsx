@@ -82,6 +82,8 @@ export function Payment() {
         console.log(error)
       }
     }
+
+    localStorage.removeItem("foodexplorer:order")
   }
 
   async function updateOrder(status) {
@@ -167,6 +169,7 @@ export function Payment() {
 
     setOrderItems(orderUpdated)
     setOrderItems([...orderItems])
+    localStorage.setItem("foodexplorer:order", JSON.stringify(orderItems))
   }
 
   function handleRemoveOrderItem(id) {
@@ -191,6 +194,7 @@ export function Payment() {
 
     setOrderItems(orderUpdated)
     setOrderItems([...orderItems])
+    localStorage.setItem("foodexplorer:order", JSON.stringify(orderItems))
   }
 
   return (
