@@ -20,6 +20,7 @@ export function PlateCard({ id, image, name, description, price, favourites }) {
   const { user } = useAuth()
   const { orderItems, setOrderItems } = useUI()
   const [isFavourite, setIsFavourite] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
   const [counterValue, setCounterValue] = useState(0)
   const platePrice = [USER_ROLE.ADMIN].includes(user.role)
@@ -71,6 +72,7 @@ export function PlateCard({ id, image, name, description, price, favourites }) {
   }
 
   function handleAddPlate(plate) {
+    setIsLoading(true)
     const index = orderItems.findIndex((existingItem) => {
       return existingItem.id === plate.id
     })
@@ -84,6 +86,10 @@ export function PlateCard({ id, image, name, description, price, favourites }) {
     } else {
       setOrderItems([...orderItems, plate])
     }
+
+    setTimeout(() => {
+      setIsLoading(false)
+    }, 700)
   }
 
   useEffect(() => {
@@ -141,6 +147,7 @@ export function PlateCard({ id, image, name, description, price, favourites }) {
             title="Adicionar"
             icon={PlusCircle}
             onClick={() => handleAddPlate(itemsInsert)}
+            loading={isLoading}
           />
         </>
       )}
