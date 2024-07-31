@@ -50,6 +50,8 @@ export function EditPlate() {
   const [plateImageFile, setPlateImageFile] = useState(null)
   const plateImageBaseURL = `${api.defaults.baseURL}/files/plates/`
 
+  const [isLoading, setIsLoading] = useState(false)
+
   function handleAddIngredient() {
     if (!newIngredient) {
       return alert("Ingrediente não pode ser vazio")
@@ -100,6 +102,8 @@ export function EditPlate() {
       )
     }
 
+    setIsLoading(true)
+
     const plate = {
       name,
       description,
@@ -111,7 +115,6 @@ export function EditPlate() {
 
     try {
       if (plateImageFile) {
-        // const plateResponse = await api.put(`/plates/${params.id}`, plate)
         const fileUploadForm = new FormData()
         fileUploadForm.append("image", plateImageFile)
 
@@ -134,9 +137,13 @@ export function EditPlate() {
         alert("Não foi possível cadastrar o prato. Tente novamente mais tarde.")
       }
     }
+
+    setIsLoading(false)
   }
 
   async function handleDeletePlate() {
+    setIsLoading(true)
+
     try {
       const confirm = window.confirm("Tem certeza que deseja excluir o prato?")
       if (confirm) {
@@ -151,6 +158,8 @@ export function EditPlate() {
         alert("Não foi possível deletar o prato. Tente novamente mais tarde.")
       }
     }
+
+    setIsLoading(false)
   }
 
   function handleCreateCategoryOption(newOption) {
@@ -296,6 +305,7 @@ export function EditPlate() {
                   title="Salvar Alterações"
                   icon={Check}
                   onClick={handleUpdatePlate}
+                  loading={isLoading}
                 />
               </div>
               <div className="save-button">
@@ -303,6 +313,7 @@ export function EditPlate() {
                   title="Excluir Prato"
                   icon={Trash}
                   onClick={handleDeletePlate}
+                  loading={isLoading}
                 />
               </div>
             </div>

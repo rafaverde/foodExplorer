@@ -44,6 +44,8 @@ export function NewPlate() {
   const [plateImage, setPlateImage] = useState("")
   const [plateImageFile, setPlateImageFile] = useState(null)
 
+  const [isLoading, setIsLoading] = useState(false)
+
   function handleAddIngredient() {
     if (!newIngredient) {
       return alert("Ingrediente não pode ser vazio")
@@ -87,6 +89,8 @@ export function NewPlate() {
       )
     }
 
+    setIsLoading(true)
+
     const plate = {
       name,
       description,
@@ -108,6 +112,7 @@ export function NewPlate() {
         const plateImageURL = `${api.defaults.baseURL}/files/plates/${response.data.image}`
         setPlateImage(plateImageURL)
       } else {
+        setIsLoading(false)
         return alert("É obrigatório colocar uma imagem do prato.")
       }
 
@@ -116,9 +121,11 @@ export function NewPlate() {
       if (error.response) {
         console.log(error.response.data.message)
       } else {
+        setIsLoading(false)
         alert("Não foi possível cadastrar o prato. Tente novamente mais tarde.")
       }
     }
+    setIsLoading(false)
     navigate("/")
   }
 
@@ -240,6 +247,7 @@ export function NewPlate() {
               title="Salvar Prato"
               icon={Check}
               onClick={handleNewPlate}
+              loading={isLoading}
             />
           </div>
         </Form>

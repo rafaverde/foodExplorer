@@ -15,8 +15,7 @@ export function Button({
       disabled={loading}
       {...rest}
     >
-      {Icon && <Icon />}
-      {LoadingIcon && <Icon />}
+      {!loading ? Icon && <Icon /> : null}
       {loading ? "Carregando..." : title}
     </Container>
   )

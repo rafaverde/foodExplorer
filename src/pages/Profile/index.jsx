@@ -31,7 +31,7 @@ import { api } from "../../services/api"
 import { USER_ROLE } from "../../utils/roles"
 
 export function Profile() {
-  const { user, updateProfile } = useAuth()
+  const { user, updateProfile, loadingUserActions } = useAuth()
   const [name, setName] = useState(user.name)
   const [email, setEmail] = useState(user.email)
   const [address, setAddress] = useState(user.address)
@@ -148,7 +148,11 @@ export function Profile() {
               icon={Lock}
               onChange={(e) => setNewPassword(e.target.value)}
             />
-            <Button title="Salvar" onClick={handleUpdate} />
+            <Button
+              title="Salvar"
+              onClick={handleUpdate}
+              loading={loadingUserActions}
+            />
           </Form>
 
           <Nav>
