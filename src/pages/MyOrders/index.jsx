@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { format } from "date-fns"
 
 import {
   Container,
@@ -25,6 +26,15 @@ export function MyOrders() {
 
   const [orders, setOrders] = useState([])
   const [iconUpdate, setIconUpdate] = useState(false)
+
+  //Date Format
+  function formatDate(date) {
+    const [dateString, hourString] = date.split(" ")
+    const [year, month, day] = dateString.split("-")
+    const [hour, minutes] = hourString.split(":")
+
+    return `${day}/${month} às ${hour}h${minutes}`
+  }
 
   //Status Options
   const selectOptions = [
@@ -150,7 +160,7 @@ export function MyOrders() {
                       {order.items}
                     </TableColumn>
                     <TableColumn style={{ gridArea: "date" }}>
-                      {order.created_at}
+                      {formatDate(order.created_at)}
                     </TableColumn>
                   </TableLine>
                 ))
