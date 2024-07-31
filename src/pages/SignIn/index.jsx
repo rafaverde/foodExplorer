@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom"
 import { useState } from "react"
 
 import { Container, Form } from "./styles"
-import { EnvelopeSimple, Lock } from "@phosphor-icons/react"
+import { DotsThreeOutline, EnvelopeSimple, Lock } from "@phosphor-icons/react"
 import logo from "../../assets/food-explorer-logo.svg"
 import darkLogo from "../../assets/food-explorer-dark-logo.svg"
 
@@ -14,7 +14,7 @@ import { useAuth } from "../../hooks/auth"
 import { useUI } from "../../hooks/ui"
 
 export function SignIn() {
-  const { signIn } = useAuth()
+  const { signIn, loadingUserActions } = useAuth()
   const { isDarkTheme } = useUI()
 
   const [email, setEmail] = useState("")
@@ -53,7 +53,11 @@ export function SignIn() {
             onChange={(event) => setPassword(event.target.value)}
           />
         </div>
-        <Button title="Entrar" onClick={handleSignIn} />
+        <Button
+          title="Entrar"
+          onClick={handleSignIn}
+          loading={loadingUserActions}
+        />
         <ButtonText
           title="Criar uma conta"
           $isactive={true}

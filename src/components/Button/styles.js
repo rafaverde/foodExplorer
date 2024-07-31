@@ -24,6 +24,8 @@ export const Container = styled.button`
 
   &:disabled {
     opacity: 0.5;
+
+    animation: pulseButtonText 1500ms ease-in-out forwards infinite;
   }
 
   &:hover {
@@ -36,5 +38,17 @@ export const Container = styled.button`
 
   @media (min-width: ${DEVICE_BREAKPOINTS.MD}) {
     font-size: 1rem;
+  }
+
+  @keyframes pulseButtonText {
+    0% {
+      color: ${({ theme }) => theme.COLORS.BUTTON_TEXT};
+    }
+    50% {
+      color: ${({ theme }) => theme.COLORS.DARK_RED};
+    }
+    100% {
+      color: ${({ theme }) => theme.COLORS.BUTTON_TEXT};
+    }
   }
 `

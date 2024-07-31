@@ -53,8 +53,6 @@ export function FavouriteCard({ id, image, name, favourites }) {
     })
   }, [])
 
-  console.log(favourites.length)
-
   if (favourites.length > 1 || favourites.length === 0) {
     return (
       <Container

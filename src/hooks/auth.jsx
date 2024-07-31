@@ -5,9 +5,11 @@ export const AuthContext = createContext({})
 
 function AuthProvider({ children }) {
   const [data, setData] = useState({})
+  const [loadingUserActions, setLoadingUserActions] = useState(false)
 
   async function signIn({ email, password }) {
     try {
+      setLoadingUserActions(true)
       const response = await api.post(
         "/sessions",
         { email, password },
@@ -30,6 +32,7 @@ function AuthProvider({ children }) {
 
       setData({})
     }
+    setLoadingUserActions(false)
   }
 
   async function signOut() {
@@ -37,6 +40,7 @@ function AuthProvider({ children }) {
     await api.delete("/sessions/logout")
 
     setData({})
+    setLoadingUserActions(false)
   }
 
   async function updateProfile({ user, avatarFile }) {
@@ -83,6 +87,7 @@ function AuthProvider({ children }) {
         signOut,
         updateProfile,
         user: data.user,
+        loadingUserActions,
       }}
     >
       {children}

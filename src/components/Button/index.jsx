@@ -5,6 +5,7 @@ export function Button({
   isDark = false,
   loading = false,
   icon: Icon,
+  loadingIcon: LoadingIcon,
   ...rest
 }) {
   return (
@@ -15,6 +16,7 @@ export function Button({
       {...rest}
     >
       {Icon && <Icon />}
+      {LoadingIcon && <Icon />}
       {loading ? "Carregando..." : title}
     </Container>
   )

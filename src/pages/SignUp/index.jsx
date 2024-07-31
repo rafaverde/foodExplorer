@@ -16,6 +16,7 @@ export function SignUp() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
+  const [isLoading, setIsLoading] = useState(false)
 
   const navigate = useNavigate()
   function handlBackButton() {
@@ -31,10 +32,13 @@ export function SignUp() {
       return alert("As senhas não conferem! Confirme a senha novamente.")
     }
 
+    setIsLoading(true)
+
     api
       .post("/users", { name, email, password })
       .then(() => {
         alert("Usuário cadastrado com sucesso!")
+        setIsLoading(false)
         navigate("/")
       })
       .catch((error) => {
@@ -43,6 +47,7 @@ export function SignUp() {
         } else {
           alert("Não foi possível efetuar o cadastro!")
         }
+        setIsLoading(false)
       })
   }
 
@@ -88,7 +93,11 @@ export function SignUp() {
             onChange={(event) => setConfirmPassword(event.target.value)}
           />
         </div>
-        <Button title="Criar conta" onClick={handleSignUp} />
+        <Button
+          title="Criar conta"
+          onClick={handleSignUp}
+          loading={isLoading}
+        />
         <ButtonText
           title="Já tem uma conta? Clique aqui."
           $isactive={true}
