@@ -61,9 +61,7 @@ export function Home() {
             actualFavourites.data.favourites[0].favourites.split(",")
           setUserFavourites(actualFavouritesArray)
         }
-      } catch (error) {
-        console.log("Favoritos está vazio.")
-      }
+      } catch (error) {}
     }
 
     fetchFavourites()
