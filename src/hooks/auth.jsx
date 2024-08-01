@@ -24,6 +24,7 @@ function AuthProvider({ children }) {
       if (error.response) {
         alert(error.response.data.message)
       } else {
+        console.log(error)
         alert("Não foi possível fazer login. Tente novamente.")
       }
 
