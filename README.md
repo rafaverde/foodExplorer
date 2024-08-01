@@ -65,6 +65,8 @@ Esse projeto está sob a licença MIT.
 
 ---
 
-Feito com ♥ by Rocketseat/[rafaverde](https://github.com/rafaverde) :wave: [Participe da nossa comunidade!](https://discord.gg/rocketseat)
+Feito com ♥ by [rafaverde](https://github.com/rafaverde) :wave:
 
-#Rocketmovies #RocketSeat
+RocketSeat Student - [Participe da nossa comunidade!](https://discord.gg/rocketseat)
+
+#foodExplorer #RocketSeat #react #node #html #css @javascript

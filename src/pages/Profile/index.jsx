@@ -31,7 +31,7 @@ import { api } from "../../services/api"
 import { USER_ROLE } from "../../utils/roles"
 
 export function Profile() {
-  const { user, updateProfile, loadingUserActions } = useAuth()
+  const { user, updateProfile, loadingUserActions, signOut } = useAuth()
   const [name, setName] = useState(user.name)
   const [email, setEmail] = useState(user.email)
   const [address, setAddress] = useState(user.address)
@@ -82,6 +82,11 @@ export function Profile() {
 
   function handleNavButton(toWhere) {
     navigate(`/${toWhere}`)
+  }
+
+  function handleSignOut() {
+    navigate("/")
+    signOut()
   }
 
   return (
@@ -177,7 +182,7 @@ export function Profile() {
               icon={Heart}
               onClick={() => handleNavButton("favourites")}
             />
-            <IconButton title="Sair" icon={SignOut} />
+            <IconButton title="Sair" icon={SignOut} onClick={handleSignOut} />
           </Nav>
         </Menu>
       </Content>
