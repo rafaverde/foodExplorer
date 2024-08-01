@@ -11,7 +11,7 @@ function UIProvider({ children }) {
 
   //Theme Mode manipulation
   const [isDarkTheme, setIsDarkTheme] = useState(
-    checkUserTheme.toLowerCase() === "true"
+    checkUserTheme?.toLowerCase() === "true"
   )
 
   function toggleThemeMode() {
