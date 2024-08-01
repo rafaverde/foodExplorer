@@ -29,6 +29,12 @@ export function SignIn() {
     signIn({ email, password })
   }
 
+  function handleKeyPress(event) {
+    if (event.charCode === ENTER_KEY) {
+      handleSignIn()
+    }
+  }
+
   return (
     <Container>
       <img src={isDarkTheme ? darkLogo : logo} alt="Food Explorer" />
@@ -51,6 +57,7 @@ export function SignIn() {
             type="password"
             placeholder="Digite sua senha"
             onChange={(event) => setPassword(event.target.value)}
+            onKeyPress={handleKeyPress}
           />
         </div>
         <Button
