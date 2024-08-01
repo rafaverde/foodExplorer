@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom"
 import { useState } from "react"
 
 import { Container, Form } from "./styles"
-import { DotsThreeOutline, EnvelopeSimple, Lock } from "@phosphor-icons/react"
+import { EnvelopeSimple, Lock } from "@phosphor-icons/react"
 import logo from "../../assets/food-explorer-logo.svg"
 import darkLogo from "../../assets/food-explorer-dark-logo.svg"
 
