@@ -20,6 +20,8 @@ export function SignIn() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
+  const ENTER_KEY = 13
+
   const navigate = useNavigate()
   function handleSignUpButton() {
     navigate("/register")
