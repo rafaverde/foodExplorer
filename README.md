@@ -8,7 +8,7 @@ O FoodExplorer possui dois tipos de usuários, Admin e Customer, com regras defi
 </p>
 
 <p align="center">
-Veja o resultado <a href="" target="_blank">aqui.</a>
+Veja o resultado <a href="https://foodexplorer-rafaverde.netlify.app/" target="_blank">aqui.</a>
 
 <p align="center">
   <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
@@ -62,6 +62,10 @@ Você pode visualizar o layout do projeto através [DESSE LINK](https://www.figm
 ## Licença
 
 Esse projeto está sob a licença MIT.
+
+## Avaliador RocketSeat
+
+O projeto em ambiente de desenvolvimento funciona corretamente, mas depois do deploy no render e netlify ele não funciona. Funcionou em algum momento, consegui cadastrar e manipular dados, depois parou de funcionar e não tenho base do curso para entender o que aconteceu. Aguardo o Feedback.
 
 ---
 
