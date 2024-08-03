@@ -60,6 +60,8 @@ export function Home() {
           const actualFavouritesArray =
             actualFavourites.data.favourites[0].favourites.split(",")
           setUserFavourites(actualFavouritesArray)
+        } else {
+          setUserFavourites(["0"])
         }
       } catch (error) {}
     }
