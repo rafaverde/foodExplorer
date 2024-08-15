@@ -75,29 +75,30 @@ export function Home() {
 
       <Content>
         <Hero />
-        {categories &&
-          categories.map((category) => (
-            <div className="category" key={category.id}>
-              <CategorySection title={category.name} />
-              <Splide aria-label={category.name} options={splideOptions}>
-                {plates &&
-                  plates
-                    .filter((plate) => plate.category_name === category.name)
-                    .map((filteredPlate) => (
-                      <SplideSlide key={filteredPlate.id}>
-                        <PlateCard
-                          id={filteredPlate.id}
-                          image={`${plateImageURL}${filteredPlate.image}`}
-                          name={filteredPlate.name}
-                          description={filteredPlate.description}
-                          price={filteredPlate.price}
-                          favourites={userFavourites}
-                        />
-                      </SplideSlide>
-                    ))}
-              </Splide>
-            </div>
-          ))}
+        {categories
+          ? categories.map((category) => (
+              <div className="category" key={category.id}>
+                <CategorySection title={category.name} />
+                <Splide aria-label={category.name} options={splideOptions}>
+                  {plates &&
+                    plates
+                      .filter((plate) => plate.category_name === category.name)
+                      .map((filteredPlate) => (
+                        <SplideSlide key={filteredPlate.id}>
+                          <PlateCard
+                            id={filteredPlate.id}
+                            image={`${plateImageURL}${filteredPlate.image}`}
+                            name={filteredPlate.name}
+                            description={filteredPlate.description}
+                            price={filteredPlate.price}
+                            favourites={userFavourites}
+                          />
+                        </SplideSlide>
+                      ))}
+                </Splide>
+              </div>
+            ))
+          : null}
       </Content>
 
       <Footer />

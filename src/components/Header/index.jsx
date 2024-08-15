@@ -32,6 +32,8 @@ export function Header({ onOpenMenu }) {
   const { signOut, user } = useAuth()
   const navigate = useNavigate()
 
+  const orderItemsCount = orderItems?.length
+
   const avatarURL = user.avatar
     ? `${api.defaults.baseURL}/files/avatar/${user.avatar}`
     : avatarPlaceHolder
@@ -64,7 +66,7 @@ export function Header({ onOpenMenu }) {
         <>
           <Button
             icon={Receipt}
-            title={`Pedidos (${orderItems.length})`}
+            title={`Pedidos (${orderItemsCount})`}
             className="order-button"
             onClick={() => navigate("/payment")}
           />

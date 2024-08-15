@@ -35,7 +35,9 @@ function UIProvider({ children }) {
   //Order states
   const order = localStorage.getItem("foodexplorer:order")
 
-  const [orderItems, setOrderItems] = useState(JSON.parse(order))
+  const [orderItems, setOrderItems] = useState(
+    order != null ? JSON.parse(order) : []
+  )
 
   useEffect(() => {
     localStorage.setItem("foodexplorer:order", JSON.stringify(orderItems))
