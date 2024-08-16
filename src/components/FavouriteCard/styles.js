@@ -57,16 +57,3 @@ export const Infos = styled.div`
     font-weight: 700;
   }
 `
-
-export const Message = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-
-  > span {
-    font-size: 1.2rem;
-    text-align: center;
-  }
-`

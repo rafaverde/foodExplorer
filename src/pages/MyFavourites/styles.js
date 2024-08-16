@@ -28,4 +28,26 @@ export const FavouriteList = styled.div`
   flex-wrap: wrap;
 
   gap: 20px;
+
+  .message {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+
+    transition: all 300ms;
+    transition-delay: 1000ms;
+
+    > span {
+      font-size: 1.2rem;
+      text-align: center;
+    }
+  }
+
+  .active ~ .message {
+    opacity: 0;
+    height: 0;
+    transition-delay: 0ms;
+  }
 `

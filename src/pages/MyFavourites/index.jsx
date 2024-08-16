@@ -2,7 +2,7 @@ import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 
 import { Container, Content, FavouriteList } from "./styles"
-import { CaretCircleLeft } from "@phosphor-icons/react"
+import { CaretCircleLeft, HeartBreak } from "@phosphor-icons/react"
 
 import { Header } from "../../components/Header"
 import { Footer } from "../../components/Footer"
@@ -87,6 +87,14 @@ export function MyFavourites() {
                   />
                 ))
             : null}
+          <div className="message">
+            <HeartBreak size={100} />
+            <span>Você não tem nenhum favorito ainda!</span>
+            <ButtonText
+              title="Navegue em nosso Cardápio e favorite suas delícias preferidas."
+              onClick={() => navigate("/")}
+            />
+          </div>
         </FavouriteList>
       </Content>
       <Footer />

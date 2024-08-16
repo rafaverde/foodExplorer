@@ -1,12 +1,12 @@
 import { useNavigate } from "react-router-dom"
 import { useState, useEffect } from "react"
 
-import { Container, Infos, Message } from "./styles"
+import { Container, Infos } from "./styles"
 
 import { IconButton } from "../IconButton"
 import { ButtonText } from "../ButtonText"
 
-import { Trash, HeartBreak } from "@phosphor-icons/react"
+import { Trash } from "@phosphor-icons/react"
 
 import { useAuth } from "../../hooks/auth"
 import { api } from "../../services/api"
@@ -53,35 +53,22 @@ export function FavouriteCard({ id, image, name, favourites }) {
     })
   }, [])
 
-  if (favourites.length > 1 || favourites.length === 0) {
-    return (
-      <Container
-        $isfavourite={isFavourite}
-        className={isActive ? "active" : "inactive"}
-      >
-        <img src={image} alt={name} />
+  return (
+    <Container
+      $isfavourite={isFavourite}
+      className={isActive ? "active" : "inactive"}
+    >
+      <img src={image} alt={name} />
 
-        <Infos>
-          <ButtonText
-            title={name}
-            onClick={() => {
-              handleDetails(id)
-            }}
-          />
-        </Infos>
-        <IconButton icon={Trash} onClick={handleRemoveFavourite} />
-      </Container>
-    )
-  } else {
-    return (
-      <Message>
-        <HeartBreak size={100} />
-        <span>Você não tem nenhum favorito ainda!</span>
+      <Infos>
         <ButtonText
-          title="Navegue em nosso Cardápio e favorite suas delícias preferidas."
-          onClick={() => navigate("/")}
+          title={name}
+          onClick={() => {
+            handleDetails(id)
+          }}
         />
-      </Message>
-    )
-  }
+      </Infos>
+      <IconButton icon={Trash} onClick={handleRemoveFavourite} />
+    </Container>
+  )
 }
