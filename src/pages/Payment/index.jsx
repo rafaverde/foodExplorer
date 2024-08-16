@@ -241,7 +241,7 @@ export function Payment() {
                   Total R${" "}
                   <span>{orderTotal.toFixed(2).replace(".", ",")}</span>
                 </h3>
-                {user.address != null ? (
+                {user.address !== null ? (
                   <p>
                     <b>Entregar em:</b>
                     {user.address}
