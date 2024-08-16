@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints"
-import heart from "../../assets/heart.svg"
-import heartFilledRed from "../../assets/heart-filled-red.svg"
+import heart from "../../assets/heart.png"
+import heartFilledRed from "../../assets/heart-filled-red.png"
 
 export const Container = styled.div`
   width: 100%;
