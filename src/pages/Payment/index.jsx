@@ -114,6 +114,12 @@ export function Payment() {
       )
     }
 
+    if (user.address === null) {
+      return alert(
+        "É necessário cadastrar um endereço! Vá até seu perfil e atualize seus dados."
+      )
+    }
+
     const orderItemsArray = orderItems.map(
       (item) => `${item.quantity}x ${item.name} R$ ${item.price.toFixed(2)}`
     )
@@ -235,7 +241,7 @@ export function Payment() {
                   Total R${" "}
                   <span>{orderTotal.toFixed(2).replace(".", ",")}</span>
                 </h3>
-                {user.address ? (
+                {user.address != null ? (
                   <p>
                     <b>Entregar em:</b>
                     {user.address}
@@ -244,7 +250,6 @@ export function Payment() {
                   <>
                     <p>
                       <b>Entregar em: </b>
-                      {user.address}
                     </p>
                     <ButtonText
                       title="Atualize seu endereço no perfil!"
