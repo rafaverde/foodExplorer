@@ -161,7 +161,12 @@ export function NewPlate() {
         <Form>
           <h2>Adicionar Prato</h2>
           <Thumbnail>
-            <img src={plateImage ? plateImage : plateImagePlaceholder} alt="" />
+            <label htmlFor="plateImage">
+              <img
+                src={plateImage ? plateImage : plateImagePlaceholder}
+                alt=""
+              />
+            </label>
           </Thumbnail>
           <InputGroup>
             <Label htmlFor="plateImage" className="upload-button">

@@ -210,10 +210,12 @@ export function EditPlate() {
           <Form>
             <h2>Editar Prato</h2>
             <Thumbnail>
-              <img
-                src={plateImage ? plateImage : plateImagePlaceholder}
-                alt=""
-              />
+              <label htmlFor="plateImage">
+                <img
+                  src={plateImage ? plateImage : plateImagePlaceholder}
+                  alt=""
+                />
+              </label>
             </Thumbnail>
             <InputGroup>
               <Label htmlFor="plateImage" className="upload-button">

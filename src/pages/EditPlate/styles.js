@@ -103,9 +103,17 @@ export const Thumbnail = styled.div`
   display: flex;
   justify-content: center;
 
-  > img {
-    width: 180px;
-    border-radius: 200px;
+  > label {
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    > img {
+      width: 180px;
+      border-radius: 200px;
+    }
   }
 `
 
