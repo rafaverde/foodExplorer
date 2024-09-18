@@ -139,6 +139,7 @@ export function EditPlate() {
     }
 
     setIsLoading(false)
+    navigate("/")
   }
 
   async function handleDeletePlate() {

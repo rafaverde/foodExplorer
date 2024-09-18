@@ -32,6 +32,10 @@ export function SignUp() {
       return alert("As senhas não conferem! Confirme a senha novamente.")
     }
 
+    if (password.length < 8 || confirmPassword.length < 8) {
+      return alert("As senhas precisam ter pelo menos 8 caracteres.")
+    }
+
     setIsLoading(true)
 
     api
